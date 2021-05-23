@@ -31,21 +31,27 @@ const Header = ({ t }) => {
     };
     return (
       <Fragment>
-        <S.CustomNavLinkSmall onClick={() => scrollTo("about")}>
+        <S.CustomNavLinkSmall onClick={() => (window.location.href = "/about")}>
           <S.Span>{t("About")}</S.Span>
         </S.CustomNavLinkSmall>
-        <S.CustomNavLinkSmall onClick={() => scrollTo("mission")}>
-          <S.Span>{t("Mission")}</S.Span>
-        </S.CustomNavLinkSmall>
-        <S.CustomNavLinkSmall onClick={() => scrollTo("product")}>
-          <S.Span>{t("Product")}</S.Span>
+        <S.CustomNavLinkSmall
+          onClick={() => (window.location.href = "/explore")}
+        >
+          <S.Span>{t("Explore")}</S.Span>
         </S.CustomNavLinkSmall>
         <S.CustomNavLinkSmall
-          style={{ width: "180px" }}
-          onClick={() => scrollTo("contact")}
+          onClick={() => (window.location.href = "/user/asjkdfahjks")}
         >
+          <S.Span>{t("View")}</S.Span>
+        </S.CustomNavLinkSmall>
+        <S.CustomNavLinkSmall onClick={() => (window.location.href = "/issue")}>
+          <S.Span>{t("Issue")}</S.Span>
+        </S.CustomNavLinkSmall>
+        <S.CustomNavLinkSmall style={{ width: "180px" }}>
           <S.Span>
-            <Button>{t("Contact")}</Button>
+            <Button onClick={() => (window.location.href = "/user/afhj")}>
+              {t("My Profile")}
+            </Button>
           </S.Span>
         </S.CustomNavLinkSmall>
       </Fragment>
