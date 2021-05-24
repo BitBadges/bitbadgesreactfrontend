@@ -20,8 +20,9 @@ const Explore = () => {
       <ContentBlock
         type="right"
         first="true"
-        title={"Coming Soon"}
-        icon="developer.svg"
+        title={"Discord"}
+        content={"Join the BitBadges discord at discord.gg/Hc9eU73S"}
+        icon="https://logos-world.net/wp-content/uploads/2020/11/Discord-Emblem.png"
         id="intro"
       />
     </Container>

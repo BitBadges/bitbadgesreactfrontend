@@ -43,7 +43,7 @@ const RightBlock = ({ title, content, button, icon, t, id }) => {
         </Col>
         <Col lg={11} md={11} sm={12} xs={24}>
           <Slide right>
-            <SvgIcon
+            <img
               src={icon}
               className="about-block-image"
               width="100%"

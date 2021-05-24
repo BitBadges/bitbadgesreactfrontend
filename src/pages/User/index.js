@@ -56,18 +56,20 @@ class User extends React.Component {
       <Container>
         <ScrollToTop />
         <PortfolioPage
+          showTitle={true}
           portfolioPages={this.state.portfolioPages}
         ></PortfolioPage>
+
         <Row type="flex" justify="space-between">
           <Col lg={11} md={11} sm={12} xs={24}>
             <List
-              title="Badges Issued"
+              title="All Issued Badges"
               hashArray={this.state.badgesIssued}
             ></List>
           </Col>
           <Col lg={11} md={11} sm={12} xs={24}>
             <List
-              title="Badges Received"
+              title="All Received Badges"
               hashArray={this.state.badgesReceived}
             ></List>
           </Col>

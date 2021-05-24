@@ -8,8 +8,9 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { withTranslation } from "react-i18next";
-import { RepeatOneSharp } from "@material-ui/icons";
+import { Gradient, RepeatOneSharp } from "@material-ui/icons";
 import axios from "axios";
+import { Hidden } from "@material-ui/core";
 class MediaCard extends React.Component {
   constructor(props) {
     super(props);
@@ -40,22 +41,36 @@ class MediaCard extends React.Component {
     console.log(this.state.badgeData);
     return (
       <Card raised>
-        <CardActionArea>
+        {this.state.badgeData.imageUrl ? (
           <img
             src={this.state.badgeData.imageUrl}
             width="200px"
             height="auto"
-            title="Contemplative Reptile"
           />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {this.state.badgeData.title}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {this.state.badgeData.description}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
+        ) : (
+          <img
+            class="default-user"
+            style={{
+              background: this.state.badgeData.backgroundColor,
+            }}
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/TransparentPlaceholder.png/120px-TransparentPlaceholder.png"
+            width="200px"
+            height="200px"
+          />
+        )}
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {this.state.badgeData.title}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            <b>Description: </b>
+            {this.state.badgeData.description}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            <b>ID: </b>
+            {this.state.badgeData.id}
+          </Typography>
+        </CardContent>
         <CardActions style={{ justifyContent: "center" }} spacing="true">
           <Button
             size="small"

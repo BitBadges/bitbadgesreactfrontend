@@ -65,7 +65,7 @@ const Footer = ({ t }) => {
                 <S.Title>{t("About the Code")}</S.Title>
                 <S.LargeTarget
                   left="true"
-                  href="https://github.com/trevormil/bitbadgesfrontend"
+                  href="https://github.com/trevormil/bitbadgesreactfrontend"
                 >
                   {t("View code on GitHub")}
                 </S.LargeTarget>
@@ -74,7 +74,7 @@ const Footer = ({ t }) => {
                 </S.Large>
                 <S.LargeTarget
                   left="true"
-                  href="https://github.com/trevormil/bitbadgesfrontend/issues"
+                  href="https://github.com/trevormil/bitbadgesreactfrontend/issues"
                 >
                   {t("Report Issues")}
                 </S.LargeTarget>

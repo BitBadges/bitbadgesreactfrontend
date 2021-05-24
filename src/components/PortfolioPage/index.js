@@ -9,7 +9,14 @@ import * as S from "./styles";
 const Button = lazy(() => import("../../common/Button"));
 const PortfolioCard = lazy(() => import("../../components/PortfolioCard"));
 
-const PortfolioPage = ({ title, content, button, t, portfolioPages }) => {
+const PortfolioPage = ({
+  title,
+  showTitle,
+  content,
+  button,
+  t,
+  portfolioPages,
+}) => {
   const scrollTo = (id) => {
     const element = document.getElementById(id);
     element.scrollIntoView({
@@ -74,28 +81,6 @@ const PortfolioPage = ({ title, content, button, t, portfolioPages }) => {
             </Row>
           </S.PortfolioPage>
           <Grid
-            direction="row"
-            justify="space-around"
-            alignItems="center"
-            alignContent="center"
-            spacing={3}
-            wrap="wrap"
-          >
-            {getEditProfile()}
-            {/*<S.Content>{getBitcloutProfile()}</S.Content>*/}
-          </Grid>
-        </>
-      ) : (
-        <>
-          <S.PortfolioPage>
-            <Row type="flex" justify="center" align="middle">
-              <S.ContentWrapper>
-                <h6>Profile</h6>
-                <p>Public key: {getUserId()}</p>
-              </S.ContentWrapper>
-            </Row>
-          </S.PortfolioPage>
-          <Grid
             container
             direction="row"
             justify="center"
@@ -107,7 +92,35 @@ const PortfolioPage = ({ title, content, button, t, portfolioPages }) => {
             {getEditProfile()}
             {/*<S.Content>{getBitcloutProfile()}</S.Content>*/}
           </Grid>
-
+        </>
+      ) : (
+        <>
+          {showTitle ? (
+            <>
+              <S.PortfolioPage>
+                <Row type="flex" justify="center" align="middle">
+                  <S.ContentWrapper>
+                    <h6>Profile</h6>
+                    <p>Public key: {getUserId()}</p>
+                  </S.ContentWrapper>
+                </Row>
+              </S.PortfolioPage>
+              <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+                alignContent="center"
+                spacing={3}
+                wrap="wrap"
+              >
+                {getEditProfile()}
+                {/*<S.Content>{getBitcloutProfile()}</S.Content>*/}
+              </Grid>
+            </>
+          ) : (
+            <></>
+          )}
           {console.log(portfolioPages)}
           {portfolioPages.map((pageObject) => {
             return (

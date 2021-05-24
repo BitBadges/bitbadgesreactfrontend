@@ -27,7 +27,10 @@ class HashList extends React.Component {
             <List>
               {this.props.hashArray.length === 0 ? (
                 <>
-                  <p align="center">You haven't received any badges yet.</p>
+                  <p align="center">
+                    Looks like you have no pages on your profile.{" "}
+                  </p>
+                  <p align="center">Enter 0 as page number above!</p>
                 </>
               ) : (
                 <p></p>
@@ -44,9 +47,6 @@ class HashList extends React.Component {
                           onClick={goToBadgePage}
                         ></IconButton>
                       </ListItemIcon>*/}
-                      <button value={value} onClick={goToBadgePage}>
-                        View
-                      </button>
                     </ListItem>
                   </>
                 );

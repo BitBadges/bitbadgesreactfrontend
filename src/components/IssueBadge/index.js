@@ -100,7 +100,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                 <Input
                   type="text"
                   name="recipient"
-                  id="Recipient"
+                  id="Public Key of Recipient"
                   placeholder=""
                   value={values.recipient || ""}
                   onChange={handleChange}

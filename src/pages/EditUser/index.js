@@ -47,7 +47,10 @@ class EditUser extends React.Component {
     return (
       <Container>
         <ScrollToTop />
-        <EditProfile badgesReceived={this.state.badgesReceived} />
+        <EditProfile
+          portfolioPages={this.state.portfolioPages}
+          badgesReceived={this.state.badgesReceived}
+        />
       </Container>
     );
   }

@@ -22,11 +22,22 @@ const Explore = () => {
         first="true"
         title={"Coming Soon"}
         content={
-          "This will be a page to explore how to earn different badges. Users can create advertisement pages for their badges"
+          "This will be a page to explore how to earn different badges. Users can create advertisement pages for their badges. For now, check out the links below for a sample into how BitBadges work!"
         }
-        icon="developer.svg"
+        icon="https://bitbadges.s3.amazonaws.com/badge.png"
         id="intro"
       />
+      <p>
+        Sample Profile -{" "}
+        <a href="https://bitbadges.web.app/user/BC1YLiXsLZvrySthVJPJozLr3rMSo2BARZ4VG525bhbsAJCTvwJQJCe">
+          Click Here{" "}
+        </a>
+        <br></br>
+        Sample Badge -{" "}
+        <a href="https://bitbadges.web.app/badge/QmcLBvoTY1Mq4DTCCHWXofv39HDnJeqTvGHFWpjsbNmRcc">
+          Click Here
+        </a>
+      </p>
     </Container>
   );
 };
