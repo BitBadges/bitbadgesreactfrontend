@@ -22,13 +22,6 @@ const Header = ({ t }) => {
   };
 
   const MenuItem = () => {
-    const scrollTo = (id) => {
-      const element = document.getElementById(id);
-      element.scrollIntoView({
-        behavior: "smooth",
-      });
-      setVisibility(false);
-    };
     return (
       <Fragment>
         <S.CustomNavLinkSmall onClick={() => (window.location.href = "/about")}>
@@ -39,17 +32,21 @@ const Header = ({ t }) => {
         >
           <S.Span>{t("Explore")}</S.Span>
         </S.CustomNavLinkSmall>
-        <S.CustomNavLinkSmall
-          onClick={() => (window.location.href = "/user/asjkdfahjks")}
-        >
-          <S.Span>{t("View")}</S.Span>
+        <S.CustomNavLinkSmall onClick={() => (window.location.href = `/view`)}>
+          <S.Span>{t("View Profiles")}</S.Span>
         </S.CustomNavLinkSmall>
         <S.CustomNavLinkSmall onClick={() => (window.location.href = "/issue")}>
-          <S.Span>{t("Issue")}</S.Span>
+          <S.Span>{t("Issue Badges")}</S.Span>
         </S.CustomNavLinkSmall>
         <S.CustomNavLinkSmall style={{ width: "180px" }}>
           <S.Span>
-            <Button onClick={() => (window.location.href = "/user/afhj")}>
+            <Button
+              onClick={() =>
+                (window.location.href = `/user/${window.localStorage.getItem(
+                  "publicKey"
+                )}`)
+              }
+            >
               {t("My Profile")}
             </Button>
           </S.Span>
@@ -62,9 +59,8 @@ const Header = ({ t }) => {
     <S.Header>
       <S.Container>
         <Row type="flex" justify="space-between" gutter={20}>
-          <S.LogoContainer to="/" aria-label="homepage">
-            <SvgIcon src="logo.svg" />
-          </S.LogoContainer>
+          <img src={process.env.PUBLIC_URL + "/img/icons/logo.png"} />
+          <S.LogoContainer to="/" aria-label="homepage"></S.LogoContainer>
           <S.NotHidden>
             <MenuItem />
           </S.NotHidden>

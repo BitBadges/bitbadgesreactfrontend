@@ -7,7 +7,7 @@ const routes = [
   {
     path: ["/about"],
     exact: true,
-    component: "About",
+    component: "Home",
   },
   {
     path: ["/explore"],
@@ -30,9 +30,49 @@ const routes = [
     component: "User",
   },
   {
+    path: ["/user/:id/edit"],
+    exact: true,
+    component: "EditUser",
+  },
+  {
     path: ["/badge/:id"],
     exact: true,
     component: "Badge",
+  },
+  {
+    path: ["/tutorial"],
+    exact: true,
+    component: "Tutorial",
+  },
+  {
+    path: ["/vision"],
+    exact: true,
+    component: "Vision",
+  },
+  {
+    path: ["/view"],
+    exact: true,
+    component: "ViewProfile",
+  },
+  {
+    path: ["/community"],
+    exact: true,
+    component: "Community",
+  },
+  {
+    path: ["/policies"],
+    exact: true,
+    component: "Policies",
+  },
+  {
+    path: ["/whitepaper"],
+    exact: true,
+    component: "Whitepaper",
+  },
+  {
+    path: ["/faq"],
+    exact: true,
+    component: "Faq",
   },
 ];
 

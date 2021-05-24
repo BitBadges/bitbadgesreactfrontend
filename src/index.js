@@ -6,14 +6,21 @@ import "antd/dist/antd.css";
 import Router from "./router";
 import i18n from "./translation";
 import * as serviceWorker from "./serviceWorker";
+import React from "react";
 
-const App = () => (
-  <BrowserRouter>
-    <I18nextProvider i18n={i18n}>
-      <Router />
-    </I18nextProvider>
-  </BrowserRouter>
-);
+class App extends React.Component {
+  render() {
+    return (
+      <>
+        <BrowserRouter>
+          <I18nextProvider i18n={i18n}>
+            <Router />
+          </I18nextProvider>
+        </BrowserRouter>
+      </>
+    );
+  }
+}
 
 ReactDOM.render(<App />, document.getElementById("root"));
 // If you want your app to work offline and load faster, you can change

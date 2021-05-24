@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import SignInBar from "../components/SignInBar";
 
 import routes from "./config";
 import GlobalStyles from "../globalStyles";
@@ -12,6 +13,8 @@ const Router = () => {
     <Suspense fallback={null}>
       <GlobalStyles />
       <Header />
+      {window.localStorage.getItem("publicKey") ? <></> : <SignInBar />}
+
       <Switch>
         {routes.map((routeItem) => {
           return (

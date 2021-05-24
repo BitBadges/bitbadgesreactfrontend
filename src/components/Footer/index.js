@@ -10,9 +10,9 @@ const SvgIcon = lazy(() => import("../../common/SvgIcon"));
 const Container = lazy(() => import("../../common/Container"));
 
 const Footer = ({ t }) => {
-  const handleChange = (event) => {
+  /*const handleChange = (event) => {
     i18n.changeLanguage(event.target.value);
-  };
+  };*/
 
   const SocialLink = ({ href, src }) => {
     return (
@@ -42,11 +42,60 @@ const Footer = ({ t }) => {
                     `Do you have any question regarding the project? Feel free to reach out.`
                   )}
                 </S.Para>
-                <a href="mailto:l.qqbadze@gmail.com">
+                <a href="mailto:trevormil@comcast.net">
                   <S.Chat>{t(`Let's Chat`)}</S.Chat>
                 </a>
               </Col>
               <Col lg={8} md={8} sm={12} xs={24}>
+                <S.Title>{t("BitBadges")}</S.Title>
+                <S.Large left="true" to="/about">
+                  {t("About")}
+                </S.Large>
+                <S.Large left="true" to="/vision">
+                  {t("Vision and the Future")}
+                </S.Large>
+                <S.Large left="true" to="/community">
+                  {t("Community")}
+                </S.Large>
+                <S.Large left="true" to="/policies">
+                  {t("Policies")}
+                </S.Large>
+              </Col>
+              <Col lg={6} md={6} sm={12} xs={24}>
+                <S.Title>{t("About the Code")}</S.Title>
+                <S.LargeTarget
+                  left="true"
+                  href="https://github.com/trevormil/bitbadgesfrontend"
+                >
+                  {t("View code on GitHub")}
+                </S.LargeTarget>
+                <S.Large left="true" to="/whitepaper">
+                  {t("Whitepaper")}
+                </S.Large>
+                <S.LargeTarget
+                  left="true"
+                  href="https://github.com/trevormil/bitbadgesfrontend/issues"
+                >
+                  {t("Report Issues")}
+                </S.LargeTarget>
+                <S.LargeTarget
+                  left="true"
+                  href="https://documenter.getpostman.com/view/11647629/TzXumf4L"
+                >
+                  {t("Documentation")}
+                </S.LargeTarget>
+              </Col>
+              {/*<S.Select>
+                  <S.Label htmlFor="select-lang">{t("Language")}</S.Label>
+                  <S.LangSelect
+                    onChange={handleChange}
+                    value={i18n.language}
+                    id="select-lang"
+                  >
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                  </S.LangSelect>
+                </S.Select><Col lg={8} md={8} sm={12} xs={24}>
                 <S.Title>{t("Policy")}</S.Title>
                 <S.Large to="/" left="true">
                   {t("Application Security")}
@@ -63,9 +112,9 @@ const Footer = ({ t }) => {
                 <S.Large left="true" to="/">
                   {t("Customer Support")}
                 </S.Large>
-              </Col>
+                  </Col>*/}
             </Row>
-            <Row type="flex" justify="space-between">
+            {/*<Row type="flex" justify="space-between">
               <Col lg={10} md={10} sm={12} xs={24}>
                 <S.Empty />
                 <S.Language>{t("ADDRESS")}</S.Language>
@@ -73,35 +122,7 @@ const Footer = ({ t }) => {
                 <S.Para>2131 Elk Street</S.Para>
                 <S.Para>California</S.Para>
               </Col>
-              <Col lg={8} md={8} sm={12} xs={24}>
-                <S.Title>{t("Company")}</S.Title>
-                <S.Large left="true" to="/">
-                  {t("About")}
-                </S.Large>
-                <S.Large left="true" to="/">
-                  {t("Blog")}
-                </S.Large>
-                <S.Large left="true" to="/">
-                  {t("Press")}
-                </S.Large>
-                <S.Large left="true" to="/">
-                  {t("Careers & Culture")}
-                </S.Large>
-              </Col>
-              <Col lg={6} md={6} sm={12} xs={24}>
-                <S.Select>
-                  <S.Label htmlFor="select-lang">{t("Language")}</S.Label>
-                  <S.LangSelect
-                    onChange={handleChange}
-                    value={i18n.language}
-                    id="select-lang"
-                  >
-                    <option value="en">English</option>
-                    <option value="es">Español</option>
-                  </S.LangSelect>
-                </S.Select>
-              </Col>
-            </Row>
+                </Row>*/}
           </Container>
         </S.Footer>
         <S.Extra>
@@ -114,35 +135,26 @@ const Footer = ({ t }) => {
             >
               <S.NavLink to="/">
                 <S.LogoContainer>
-                  <SvgIcon
-                    src="logo.svg"
-                    aria-label="homepage"
-                    width="101px"
-                    height="64px"
-                  />
+                  <img src="./img/icons/logo.png" />
                 </S.LogoContainer>
               </S.NavLink>
               <S.FooterContainer>
                 <SocialLink
-                  href="https://github.com/Adrinlol/create-react-app-adrinlol"
+                  href="https://github.com/trevormil"
                   src="github.svg"
                 />
                 <SocialLink
-                  href="https://twitter.com/Adrinlolx"
+                  href="https://twitter.com/trevormil23"
                   src="twitter.svg"
                 />
                 <SocialLink
-                  href="https://www.linkedin.com/in/lasha-kakabadze/"
+                  href="https://www.linkedin.com/in/trevor-miller-1110aa1b1/"
                   src="linkedin.svg"
                 />
-                <SocialLink
-                  href="https://github.com/Adrinlol/"
-                  src="instagram.svg"
-                />
-                <SocialLink
-                  href="https://medium.com/@lashakakabadze/"
-                  src="medium.svg"
-                />
+                {/*<SocialLink
+                  href="https://bitclout.com/u/trevormil"
+                  src="bitclout.svg"
+                />*/}
               </S.FooterContainer>
             </Row>
           </Container>
