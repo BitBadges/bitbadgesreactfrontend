@@ -49,34 +49,6 @@ const IssueBadge = ({ title, content, id, t }) => {
     setChecked(event.target.checked);
   };
 
-  const responseClout = (response) => {
-    for (let x in response) {
-      window.localStorage.setItem(x, response[x]);
-    }
-    console.log(response);
-    const url = `https://us-central1-bitbadges.cloudfunctions.net/api/username/${window.localStorage.getItem(
-      "publicKey"
-    )}`;
-    axios({
-      method: "get",
-      url: url,
-    })
-      .then((response) => {
-        console.log(response);
-        window.localStorage.setItem("username", response.data.Profile.Username);
-        window.location.href = "/home";
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else {
-          console.log(error);
-        }
-      });
-  };
-
   return (
     <S.IssueBadgeContainer id={id}>
       <S.IssueBadge>
@@ -84,29 +56,13 @@ const IssueBadge = ({ title, content, id, t }) => {
           <Col lg={12} md={11} sm={24}>
             <Block
               padding={true}
-              title={"Issue a badge!"}
+              title={"Advertise your badge!"}
               content={
-                "Issue a badge to another user! Add their name in the recipient box, give it a title, and add any other accompanying details you choose. Note that everything is permanently stored on the blockchain and interplanetary file system (IPFS). This means that the badge cannot ever be changed once submitted, so double check before submitting!"
+                "Have an idea for a badge in mind? Get it out to the public by advertising it. Explain what the badge is and what needs to be done to obtain it. You can create a badge ad for any service you want to offer or any appreciation you want to give out. Some examples may include creating a badge for completion of the course you are teaching, a gym membership, or an employee of the month award!"
               }
             />
             <img src="https://bitbadges.s3.amazonaws.com/badge.png"></img>
           </Col>
-          {/** 
-           * badges: [
-    {
-      issuer: "", //required to not be empty
-      recipient: "", //required to not be empty
-      imageUrl: "",
-      title: "", //requied to not be empty
-      externalUrl: "",
-      backgroundColor: "", //required to not be empty
-      description:""
-      validDates: true,
-      validDateStart: 1, //integer representing seconds since UNIX epoch
-      validDateEnd: 5, //integer representing seconds since UNIX epoch
-    },
-  ],
-          */}
           <Col lg={12} md={12} sm={24}>
             <S.FormGroup autoComplete="off" onSubmit={handleSubmit}>
               <Col span={24}>
@@ -123,14 +79,28 @@ const IssueBadge = ({ title, content, id, t }) => {
               <Col span={24}>
                 <Input
                   type="text"
-                  name="recipient"
-                  id="Recipient's BitClout Username"
+                  name="Validity"
+                  id="Validity"
                   placeholder=""
-                  value={values.recipient || ""}
+                  value={values.validity || ""}
                   onChange={handleChange}
+                  additionalInfo="*Explain how long the badge is valid for"
                 />
-                <ValidationType type="recipient" />
+                <ValidationType type="validity" />
               </Col>
+              <Col span={24}>
+                <Input
+                  type="text"
+                  name="preReqs"
+                  id="Pre-Requisites"
+                  placeholder=""
+                  value={values.preReqs || ""}
+                  onChange={handleChange}
+                  additionalInfo="*What needs to be done to obtain the badge"
+                />
+                <ValidationType type="preReqs" />
+              </Col>
+
               <Col span={24}>
                 <Input
                   type="text"
@@ -139,7 +109,6 @@ const IssueBadge = ({ title, content, id, t }) => {
                   placeholder=""
                   value={values.imageUrl || ""}
                   onChange={handleChange}
-                  additionalInfo="*Note that once submitted, this badge can never unpoint to this URL. Consider using IPFS or another permanent file storage option. If blank, defaults to solid image of background color."
                 />
                 <ValidationType type="imageUrl" />
               </Col>
@@ -151,7 +120,6 @@ const IssueBadge = ({ title, content, id, t }) => {
                   placeholder=""
                   value={values.externalUrl || ""}
                   onChange={handleChange}
-                  additionalInfo="*Note that once submitted, this badge can never unpoint to this URL. Consider using IPFS or another permanent file storage option."
                 />
                 <ValidationType type="externalUrl" />
               </Col>
@@ -167,7 +135,6 @@ const IssueBadge = ({ title, content, id, t }) => {
                 />
                 <ValidationType type="backgroundColor" />
               </Col>
-
               <Col span={24}>
                 <TextArea
                   placeholder=""
@@ -175,54 +142,11 @@ const IssueBadge = ({ title, content, id, t }) => {
                   name="description"
                   id="Description"
                   onChange={handleChange}
-                  additionalInfo="*Add all additional details you wish to provide here. Note that accounts can change username and can change ownership, but badges will always be tied to the public key of an account."
+                  additionalInfo="*Add all additional details you wish to provide here."
                 />
                 <ValidationType type="description" />
               </Col>
-              <Col span={24}>
-                <label htmlFor="validDatesCheckbox">Start/End Dates?</label>
-                <Checkbox
-                  id="validDatesCheckbox"
-                  checked={checked}
-                  onChange={handleCheckbox}
-                  inputProps={{ "aria-label": "primary checkbox" }}
-                />
-              </Col>
-              <Col span={24}>
-                {checked ? (
-                  <>
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                      <KeyboardDatePicker
-                        margin="normal"
-                        id="date-picker-dialog"
-                        label="Start Date"
-                        format="MM/dd/yyyy"
-                        value={selectedStartDate}
-                        onChange={handleStartDateChange}
-                        KeyboardButtonProps={{
-                          "aria-label": "change date",
-                        }}
-                      />
-                    </MuiPickersUtilsProvider>
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                      <KeyboardDatePicker
-                        margin="normal"
-                        id="date-picker-dialog"
-                        label="End Date"
-                        format="MM/dd/yyyy"
-                        value={selectedEndDate}
-                        onChange={handleEndDateChange}
-                        KeyboardButtonProps={{
-                          "aria-label": "change date",
-                        }}
-                      />
-                    </MuiPickersUtilsProvider>
-                  </>
-                ) : (
-                  <></>
-                )}
-                <ValidationType type="validDates" />
-              </Col>
+
               <S.ButtonContainer>
                 <Button name="submit" type="submit">
                   {t("Submit")}

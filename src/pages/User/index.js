@@ -32,7 +32,7 @@ class User extends React.Component {
     this.getUserProfileData();
   }
 
-  getUserProfileData() {
+  getUserProfileData = async () => {
     axios
       .get(
         `https://us-central1-bitbadges.cloudfunctions.net/api/users/${this.state.userId}`

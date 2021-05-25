@@ -42,23 +42,30 @@ let badgeData = {
         {this.props.badge.issuer ? (
           <>
             <h6 align="center">{this.props.badge.title}</h6>
-            {valid ? (
-              <div align="center">
-                <CheckCircleIcon
-                  align="center"
-                  fontSize="large"
-                  style={{ color: "green" }}
-                />
-              </div>
+            {this.props.validDates ? (
+              <>
+                {valid ? (
+                  <div align="center">
+                    <CheckCircleIcon
+                      align="center"
+                      fontSize="large"
+                      style={{ color: "green" }}
+                    />
+                  </div>
+                ) : (
+                  <div align="center">
+                    <ErrorIcon
+                      align="center"
+                      fontSize="large"
+                      style={{ color: "red" }}
+                    />
+                  </div>
+                )}
+              </>
             ) : (
-              <div align="center">
-                <ErrorIcon
-                  align="center"
-                  fontSize="large"
-                  style={{ color: "red" }}
-                />
-              </div>
+              <></>
             )}
+
             {this.props.badge.validDates ? (
               <p
                 align="center"
@@ -70,26 +77,41 @@ let badgeData = {
                 color={validColor}
               >{`This badge is valid forever!`}</p>
             )}
-            <div display="inline">
-              <p align="center">{`Issued by @${this.props.badge.issuer} to @${this.props.badge.recipient}`}</p>
-              <p align="center">
-                <button
-                  onClick={() =>
-                    (window.location.href = `/user/${this.props.badge.issuer}`)
-                  }
-                >
-                  View Issuer Profile
-                </button>{" "}
-                -{" "}
-                <button
-                  onClick={() =>
-                    (window.location.href = `/user/${this.props.badge.issuer}`)
-                  }
-                >
-                  View Recipient Profile
-                </button>
-              </p>
-            </div>
+            {this.props.badge.recipient ? (
+              <div display="inline">
+                <p align="center">{`Issued by @${this.props.badge.issuer} to @${this.props.badge.recipient}`}</p>
+                <p align="center">
+                  <button
+                    onClick={() =>
+                      (window.location.href = `/user/${this.props.badge.issuer}`)
+                    }
+                  >
+                    View Issuer Profile
+                  </button>{" "}
+                  -{" "}
+                  <button
+                    onClick={() =>
+                      (window.location.href = `/user/${this.props.badge.recipient}`)
+                    }
+                  >
+                    View Recipient Profile
+                  </button>
+                </p>
+              </div>
+            ) : (
+              <div display="inline">
+                <p align="center">{`Issuer: @${this.props.badge.issuer}`}</p>
+                <p align="center">
+                  <button
+                    onClick={() =>
+                      (window.location.href = `/user/${this.props.badge.issuer}`)
+                    }
+                  >
+                    View Issuer Profile
+                  </button>
+                </p>
+              </div>
+            )}
           </>
         ) : (
           <p>Loading...</p>

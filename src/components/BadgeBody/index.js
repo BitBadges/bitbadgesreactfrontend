@@ -33,7 +33,22 @@ class LeftContentBlock extends React.Component {
             <S.ContentWrapper>
               <div align="center">
                 <h6>Info</h6>
-
+                {this.props.badge.validity ? (
+                  <S.Content>
+                    <b>Validity: </b>
+                    {`${this.props.badge.validity}`}
+                  </S.Content>
+                ) : (
+                  <></>
+                )}
+                {this.props.badge.preReqs ? (
+                  <S.Content>
+                    <b>Pre-Requisites: </b>
+                    {`${this.props.badge.preReqs}`}
+                  </S.Content>
+                ) : (
+                  <></>
+                )}
                 {this.props.badge.externalUrl ? (
                   <S.Content>
                     <b>URL: </b>
@@ -50,18 +65,34 @@ class LeftContentBlock extends React.Component {
                 ) : (
                   <></>
                 )}
-                <S.Content>
-                  <b>Date Created: </b>
-                  {`${new Date(this.props.badge.dateCreated).toDateString()}`}
-                </S.Content>
-                <Button
-                  align="center"
-                  onClick={() =>
-                    (window.location.href = `https://ipfs.infura.io/ipfs/${this.props.badge.id}`)
-                  }
-                >
-                  View on IPFS
-                </Button>
+                {this.props.badge.id ? (
+                  <S.Content>
+                    <b>Badge ID: </b>
+                    {`${this.props.badge.id}`}
+                  </S.Content>
+                ) : (
+                  <></>
+                )}
+                {this.props.badge.dateCreated ? (
+                  <div>
+                    <S.Content>
+                      <b>Date Created: </b>
+                      {`${new Date(
+                        this.props.badge.dateCreated
+                      ).toDateString()}`}
+                    </S.Content>
+                    <Button
+                      align="center"
+                      onClick={() =>
+                        (window.location.href = `https://ipfs.infura.io/ipfs/${this.props.badge.id}`)
+                      }
+                    >
+                      View on IPFS
+                    </Button>
+                  </div>
+                ) : (
+                  <></>
+                )}
               </div>
             </S.ContentWrapper>
           </Col>

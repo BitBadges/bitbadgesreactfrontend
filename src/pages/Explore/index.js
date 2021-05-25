@@ -1,48 +1,64 @@
+import React from "react";
 import { lazy } from "react";
-
-import IntroContent from "../../content/IntroContent.json";
 import MiddleBlockContent from "../../content/MiddleBlockContent.json";
-import AboutContent from "../../content/AboutContent.json";
-import MissionContent from "../../content/MissionContent.json";
-import ProductContent from "../../content/ProductContent.json";
-import ContactContent from "../../content/ContactContent.json";
+import PortfolioPage from "../../components/PortfolioPage";
+import axios from "axios";
+import { Paper, Box } from "@material-ui/core";
+
+import { Row, Col } from "antd";
+import AdPage from "../../components/AdPage";
 
 const ContactFrom = lazy(() => import("../../components/ContactForm"));
 const ContentBlock = lazy(() => import("../../components/ContentBlock"));
 const MiddleBlock = lazy(() => import("../../components/MiddleBlock"));
+
+const List = lazy(() => import("../../common/List"));
 const Container = lazy(() => import("../../common/Container"));
 const ScrollToTop = lazy(() => import("../../common/ScrollToTop"));
 
-const Explore = () => {
-  return (
-    <Container>
-      <ScrollToTop />
-      <ContentBlock
-        type="right"
-        first="true"
-        title={"Coming Soon"}
-        content={
-          "This will be a page to explore how to earn different badges. Users can create advertisement pages for their badges. For now, check out the links below for a sample into how BitBadges work!"
-        }
-        icon="https://bitbadges.s3.amazonaws.com/badge.png"
-        id="intro"
-      />
-      <p>
-        Sample Profile -{" "}
-        <a href="https://bitbadges.web.app/user/trevormil">Click Here </a>
-        <br></br>
-        Sample Valid Badge -{" "}
-        <a href="https://bitbadges.web.app/badge/QmSn6MaEFwSh9gCvcaTGufnp7abrgeV9ibjCNctV48Jvic">
-          Click Here
-        </a>
-        <br></br>
-        Sample Invalid Badge -{" "}
-        <a href="https://bitbadges.web.app/badge/QmW6ZfarAxttafySxVPZPa97LSZh1q8bV9tSDKcLY9qdvF">
-          Click Here
-        </a>
-      </p>
-    </Container>
-  );
-};
+class User extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      userId: window.location.pathname.split("/")[2],
+      badgePages: [],
+    };
 
-export default Explore;
+    this.getBadgeeData = this.getBadgeeData.bind(this);
+    this.getBadgeeData();
+  }
+
+  getBadgeeData() {
+    axios
+      .get(`https://us-central1-bitbadges.cloudfunctions.net/api/badgePages`)
+      .then((response) => {
+        console.log(response);
+        let data = response.data;
+        this.setState({
+          badgePages: data,
+          loading: false,
+        });
+      });
+  }
+
+  render() {
+    return (
+      <Container>
+        <ScrollToTop />
+        <Box border={5}>
+          {!this.state.loading ? (
+            <AdPage
+              showTitle={true}
+              badgePages={this.state.badgePages}
+            ></AdPage>
+          ) : (
+            <></>
+          )}
+        </Box>
+      </Container>
+    );
+  }
+}
+
+export default User;

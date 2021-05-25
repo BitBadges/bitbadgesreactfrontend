@@ -20,6 +20,11 @@ const routes = [
     component: "Issue",
   },
   {
+    path: ["/issuead"],
+    exact: true,
+    component: "IssueAd",
+  },
+  {
     path: ["/badgePage/:id"],
     exact: true,
     component: "BadgePage",
