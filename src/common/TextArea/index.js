@@ -2,7 +2,7 @@ import { withTranslation } from "react-i18next";
 
 import * as S from "./styles";
 
-const TextArea = ({ name, id, placeholder, onChange, t }) => (
+const TextArea = ({ name, id, placeholder, onChange, t, additionalInfo }) => (
   <S.Container>
     <label htmlFor={name}>{t(id)}</label>
     <S.TextArea
@@ -12,6 +12,7 @@ const TextArea = ({ name, id, placeholder, onChange, t }) => (
       name={name}
       onChange={onChange}
     />
+    <label htmlFor={name}>{t(additionalInfo)}</label>
   </S.Container>
 );
 

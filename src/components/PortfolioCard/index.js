@@ -45,7 +45,7 @@ class MediaCard extends React.Component {
           <img
             src={this.state.badgeData.imageUrl}
             width="200px"
-            height="auto"
+            height="200px"
           />
         ) : (
           <img

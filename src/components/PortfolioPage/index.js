@@ -27,17 +27,15 @@ const PortfolioPage = ({
   const getEditProfile = () => {
     let jsx =
       window.localStorage.getItem("username") === getUserId() ? (
-        <>
-          <Button
-            name="submit"
-            type="submit"
-            onClick={() =>
-              (window.location.href = window.location.href + "/edit")
-            }
-          >
-            Edit Profile
-          </Button>
-        </>
+        <Button
+          name="submit"
+          type="submit"
+          onClick={() =>
+            (window.location.href = window.location.href + "/edit")
+          }
+        >
+          Edit Profile
+        </Button>
       ) : (
         <></>
       );
@@ -46,17 +44,15 @@ const PortfolioPage = ({
 
   const getBitcloutProfile = () => {
     let jsx = window.localStorage.getItem("username") ? (
-      <>
-        <Button
-          name="submit"
-          type="submit"
-          onClick={() =>
-            (window.location.href = `https://bitclout.com/u/${getUserId()}`)
-          }
-        >
-          View BitClout Profile
-        </Button>
-      </>
+      <Button
+        name="submit"
+        type="submit"
+        onClick={() =>
+          (window.location.href = `https://bitclout.com/u/${getUserId()}`)
+        }
+      >
+        View BitClout Profile
+      </Button>
     ) : (
       <></>
     );
@@ -74,7 +70,9 @@ const PortfolioPage = ({
             <Row type="flex" justify="center" align="middle">
               <S.ContentWrapper>
                 <h6>Profile: {getUserId()}</h6>
-                <p>Oh no! This user has not customized their profile yet!</p>
+                <p>
+                  Oh no! {getUserId()} has not customized their profile yet!
+                </p>
               </S.ContentWrapper>
             </Row>
           </S.PortfolioPage>
@@ -87,8 +85,8 @@ const PortfolioPage = ({
             spacing={3}
             wrap="wrap"
           >
-            {getEditProfile()}
-            {getBitcloutProfile()}
+            <div>{getEditProfile()}</div>
+            <div>{getBitcloutProfile()}</div>
           </Grid>
         </>
       ) : (

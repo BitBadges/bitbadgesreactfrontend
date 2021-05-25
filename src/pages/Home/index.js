@@ -22,7 +22,7 @@ const Home = () => {
         first="true"
         title={"Welcome to BitBadges!"}
         content={
-          "BitBadges is a platform that allows BitClout users to issue badges to other BitClout users! This fosters more interaction between a creator and their audience."
+          "BitBadges is a platform that allows BitClout users to issue NFT badges to other BitClout users! This fosters more interaction between a creator and their audience."
         }
         icon="https://bitbadges.s3.amazonaws.com/badge.png"
         id="intro"
@@ -48,7 +48,7 @@ const Home = () => {
         type="left"
         title={"Vision"}
         content={
-          "BitBadges intends to be a completely open source and community driven project. BitBadges is not a company, just code and a community. Join the discord at discord.gg/Hc9eU73S"
+          "BitBadges intends to be a completely open source and community driven project. BitBadges is not a company, just code and a community. BitBadges creator coins will be given out to those who help maintain the ecosystem and innovate upon it. Join the discord at discord.gg/Hc9eU73S"
         }
         icon="./img/icons/logo.png"
         id="mission"

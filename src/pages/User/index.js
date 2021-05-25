@@ -60,8 +60,11 @@ class User extends React.Component {
             showTitle={true}
             portfolioPages={this.state.portfolioPages}
           ></PortfolioPage>
-
-          <Row type="flex" justify="space-between">
+          <Row
+            style={{ margin: "50px 0px" }}
+            type="flex"
+            justify="space-between"
+          >
             <Col lg={11} md={11} sm={12} xs={24}>
               <List
                 title="All Issued Badges"

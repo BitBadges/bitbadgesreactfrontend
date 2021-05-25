@@ -83,12 +83,14 @@ const IssueBadge = ({ title, content, id, t }) => {
         <Row type="flex" justify="space-between" align="middle">
           <Col lg={12} md={11} sm={24}>
             <Block
+              
               padding={true}
               title={"Issue a badge!"}
               content={
-                "The only two required fields are title and recipient. Note that everything is permanent and cannot be changed once submitted. This especially applies to the URLs because if the URL is shut down or discontinued, the badge will never be able to unpoint to that URL. Additionally, be aware that user accounts can both change username and change ownership, so if it is specific to one person, add accompanying details in the description. Background colors must be a hex value in format '#FFFFFF' or a valid HTML color name.  Visit www.w3schools.com/colors/colors_names.asp for more info."
+                "Issue a badge to another user! Add their name in the recipient box, give it a title, and add any other accompanying details you choose. Note that everything is permanently stored on the blockchain and interplanetary file system (IPFS). This means that the badge cannot ever be changed once submitted, so double check before submitting!"
               }
             />
+            <img src="https://bitbadges.s3.amazonaws.com/badge.png"></img>
           </Col>
           {/** 
            * badges: [
@@ -123,7 +125,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                 <Input
                   type="text"
                   name="recipient"
-                  id="Username of Recipient"
+                  id="Recipient's BitClout Username"
                   placeholder=""
                   value={values.recipient || ""}
                   onChange={handleChange}
@@ -138,6 +140,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   placeholder=""
                   value={values.imageUrl || ""}
                   onChange={handleChange}
+                  additionalInfo="*Note that once submitted, this badge can never unpoint to this URL. Consider using IPFS or another permanent file storage option. If blank, defaults to solid image of background color."
                 />
                 <ValidationType type="imageUrl" />
               </Col>
@@ -149,6 +152,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   placeholder=""
                   value={values.externalUrl || ""}
                   onChange={handleChange}
+                  additionalInfo="*Note that once submitted, this badge can never unpoint to this URL. Consider using IPFS or another permanent file storage option."
                 />
                 <ValidationType type="externalUrl" />
               </Col>
@@ -160,6 +164,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   placeholder=""
                   value={values.backgroundColor || ""}
                   onChange={handleChange}
+                  additionalInfo="*Background colors must be a hex value in format '#FFFFFF' or a valid HTML color name. Visit www.w3schools.com/colors/colors_names.asp for more info. Defaults to black."
                 />
                 <ValidationType type="backgroundColor" />
               </Col>
@@ -171,6 +176,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   name="description"
                   id="Description"
                   onChange={handleChange}
+                  additionalInfo="*Add all additional details you wish to provide here. Note that accounts can change username and can change ownership, so include other identity verification details here."
                 />
                 <ValidationType type="description" />
               </Col>
