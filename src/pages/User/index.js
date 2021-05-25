@@ -3,7 +3,7 @@ import { lazy } from "react";
 import MiddleBlockContent from "../../content/MiddleBlockContent.json";
 import PortfolioPage from "../../components/PortfolioPage";
 import axios from "axios";
-import { Paper } from "@material-ui/core";
+import { Paper, Box } from "@material-ui/core";
 
 import { Row, Col } from "antd";
 
@@ -55,25 +55,27 @@ class User extends React.Component {
     return (
       <Container>
         <ScrollToTop />
-        <PortfolioPage
-          showTitle={true}
-          portfolioPages={this.state.portfolioPages}
-        ></PortfolioPage>
+        <Box border={5}>
+          <PortfolioPage
+            showTitle={true}
+            portfolioPages={this.state.portfolioPages}
+          ></PortfolioPage>
 
-        <Row type="flex" justify="space-between">
-          <Col lg={11} md={11} sm={12} xs={24}>
-            <List
-              title="All Issued Badges"
-              hashArray={this.state.badgesIssued}
-            ></List>
-          </Col>
-          <Col lg={11} md={11} sm={12} xs={24}>
-            <List
-              title="All Received Badges"
-              hashArray={this.state.badgesReceived}
-            ></List>
-          </Col>
-        </Row>
+          <Row type="flex" justify="space-between">
+            <Col lg={11} md={11} sm={12} xs={24}>
+              <List
+                title="All Issued Badges"
+                hashArray={this.state.badgesIssued}
+              ></List>
+            </Col>
+            <Col lg={11} md={11} sm={12} xs={24}>
+              <List
+                title="All Received Badges"
+                hashArray={this.state.badgesReceived}
+              ></List>
+            </Col>
+          </Row>
+        </Box>
       </Container>
     );
   }

@@ -7,7 +7,6 @@ import Router from "./router";
 import i18n from "./translation";
 import * as serviceWorker from "./serviceWorker";
 import React from "react";
-
 class App extends React.Component {
   render() {
     return (

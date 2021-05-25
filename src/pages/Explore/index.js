@@ -29,12 +29,15 @@ const Explore = () => {
       />
       <p>
         Sample Profile -{" "}
-        <a href="https://bitbadges.web.app/user/BC1YLiXsLZvrySthVJPJozLr3rMSo2BARZ4VG525bhbsAJCTvwJQJCe">
-          Click Here{" "}
+        <a href="https://bitbadges.web.app/user/trevormil">Click Here </a>
+        <br></br>
+        Sample Valid Badge -{" "}
+        <a href="https://bitbadges.web.app/badge/QmSn6MaEFwSh9gCvcaTGufnp7abrgeV9ibjCNctV48Jvic">
+          Click Here
         </a>
         <br></br>
-        Sample Badge -{" "}
-        <a href="https://bitbadges.web.app/badge/QmcLBvoTY1Mq4DTCCHWXofv39HDnJeqTvGHFWpjsbNmRcc">
+        Sample Invalid Badge -{" "}
+        <a href="https://bitbadges.web.app/badge/QmW6ZfarAxttafySxVPZPa97LSZh1q8bV9tSDKcLY9qdvF">
           Click Here
         </a>
       </p>

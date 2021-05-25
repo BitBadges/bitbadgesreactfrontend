@@ -7,6 +7,7 @@ import useForm from "./useForm";
 import validate from "./validationRules";
 import * as S from "./styles";
 import { Grid, Box } from "@material-ui/core";
+import axios from "axios";
 const Block = lazy(() => import("../Block"));
 const Input = lazy(() => import("../../common/Input"));
 const Button = lazy(() => import("../../common/Button"));
@@ -28,24 +29,6 @@ const Contact = ({ badgesReceived, portfolioPages, title, content, id, t }) => {
     ) : (
       <S.Span />
     );
-  };
-
-  const responseClout = (response) => {
-    window.localStorage.publicKey = response["publicKey"];
-    window.localStorage.jwt = response["jwt"];
-
-    /**
-    {
-        "hasExtraText": false,
-        "publicKey": USER_publicKey,
-        "btcDepositAddress": USER_btcDepositAddress,
-        "encryptedSeedHex": USER_encryptedSeedHex,
-        "network": "mainnet",
-        "accessLevel":  USER_accessLevel,
-        "accessLevelHmac": USER_accessLevelHmac,
-        "jwt": USER_jwt
-    }
-    */
   };
 
   const getPageTitleArray = () => {
@@ -110,16 +93,11 @@ const Contact = ({ badgesReceived, portfolioPages, title, content, id, t }) => {
                 </Col>
 
                 <S.ButtonContainer>
-                  <BitcloutLogin
-                    accessLevel={4}
-                    onSuccess={responseClout}
-                    onFailure={responseClout}
-                    // customIcon={<LockOpenIcon/>}
-                  />
                   <Button name="submit" type="submit">
                     {t("Submit")}
                   </Button>
-                  <p>Before submitting every time, sign in to BitClout!</p>
+                  <p>Please double check everything!</p>
+                  <p>Once you submit, it is permanent</p>
                 </S.ButtonContainer>
               </S.FormGroup>
             </Col>
@@ -134,41 +112,14 @@ const Contact = ({ badgesReceived, portfolioPages, title, content, id, t }) => {
               hashArray={getPageTitleArray()}
             ></PageList>
           </Col>
-          <PortfolioPage
-            portfolioPages={[
-              { pageTitle: "All Received Badges", badges: badgesReceived },
-            ]}
-            showTitle={false}
-          />
-
-          {/*
-          {badgesReceived ? (
-            <Col lg={12} md={12} sm={12} xs={24}>
-              <h6 align="center">My Badges</h6>
-              <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-                alignContent="center"
-                spacing={3}
-                wrap="wrap"
-              >
-                {badgesReceived.map((badge) => {
-                  {
-                    console.log(badge);
-                  }
-                  return (
-                    <S.Span>
-                      <PortfolioCard badgeId={badge} />;
-                    </S.Span>
-                  );
-                })}
-              </Grid>
-            </Col>
-          ) : (
-            <></>
-          )}*/}
+          <Col lg={24} md={24} sm={24} xs={12}>
+            <PortfolioPage
+              portfolioPages={[
+                { pageTitle: "All Received Badges", badges: badgesReceived },
+              ]}
+              showTitle={false}
+            />
+          </Col>
         </Row>
       </S.ContactContainer>
     </>

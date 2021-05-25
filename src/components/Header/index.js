@@ -43,7 +43,7 @@ const Header = ({ t }) => {
             <Button
               onClick={() =>
                 (window.location.href = `/user/${window.localStorage.getItem(
-                  "publicKey"
+                  "username"
                 )}`)
               }
             >
@@ -59,8 +59,13 @@ const Header = ({ t }) => {
     <S.Header>
       <S.Container>
         <Row type="flex" justify="space-between" gutter={20}>
-          <img src={process.env.PUBLIC_URL + "/img/icons/logo.png"} />
-          <S.LogoContainer to="/" aria-label="homepage"></S.LogoContainer>
+          <S.LogoContainer to="/" aria-label="homepage">
+            <img
+              height="90px"
+              src={process.env.PUBLIC_URL + "/img/icons/logo.png"}
+            />
+          </S.LogoContainer>
+
           <S.NotHidden>
             <MenuItem />
           </S.NotHidden>
@@ -68,6 +73,7 @@ const Header = ({ t }) => {
             <S.Outline />
           </S.Burger>
         </Row>
+        <Row type="flex" justify="end"></Row>
         <CSSTransition
           in={!isSmallScreen || isNavVisible}
           timeout={350}

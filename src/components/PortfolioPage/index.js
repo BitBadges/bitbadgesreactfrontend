@@ -26,7 +26,7 @@ const PortfolioPage = ({
 
   const getEditProfile = () => {
     let jsx =
-      window.localStorage.getItem("publicKey") === getUserId() ? (
+      window.localStorage.getItem("username") === getUserId() ? (
         <>
           <Button
             name="submit"
@@ -45,22 +45,21 @@ const PortfolioPage = ({
   };
 
   const getBitcloutProfile = () => {
-    let jsx =
-      window.localStorage.getItem("publicKey") === getUserId() ? (
-        <>
-          <Button
-            name="submit"
-            type="submit"
-            onClick={() =>
-              (window.location.href = `https://bitclout.com/u/${getUserId()}`)
-            }
-          >
-            View BitClout Profile
-          </Button>
-        </>
-      ) : (
-        <></>
-      );
+    let jsx = window.localStorage.getItem("username") ? (
+      <>
+        <Button
+          name="submit"
+          type="submit"
+          onClick={() =>
+            (window.location.href = `https://bitclout.com/u/${getUserId()}`)
+          }
+        >
+          View BitClout Profile
+        </Button>
+      </>
+    ) : (
+      <></>
+    );
     return jsx;
   };
 
@@ -74,8 +73,7 @@ const PortfolioPage = ({
           <S.PortfolioPage>
             <Row type="flex" justify="center" align="middle">
               <S.ContentWrapper>
-                <h6>Profile</h6>
-                <p>Public key: {getUserId()}</p>
+                <h6>Profile: {getUserId()}</h6>
                 <p>Oh no! This user has not customized their profile yet!</p>
               </S.ContentWrapper>
             </Row>
@@ -90,7 +88,7 @@ const PortfolioPage = ({
             wrap="wrap"
           >
             {getEditProfile()}
-            {/*<S.Content>{getBitcloutProfile()}</S.Content>*/}
+            {getBitcloutProfile()}
           </Grid>
         </>
       ) : (
@@ -100,8 +98,7 @@ const PortfolioPage = ({
               <S.PortfolioPage>
                 <Row type="flex" justify="center" align="middle">
                   <S.ContentWrapper>
-                    <h6>Profile</h6>
-                    <p>Public key: {getUserId()}</p>
+                    <h6>Profile: {getUserId()}</h6>
                   </S.ContentWrapper>
                 </Row>
               </S.PortfolioPage>
@@ -115,7 +112,7 @@ const PortfolioPage = ({
                 wrap="wrap"
               >
                 {getEditProfile()}
-                {/*<S.Content>{getBitcloutProfile()}</S.Content>*/}
+                {getBitcloutProfile()}
               </Grid>
             </>
           ) : (

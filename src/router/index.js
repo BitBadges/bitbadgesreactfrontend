@@ -13,7 +13,7 @@ const Router = () => {
     <Suspense fallback={null}>
       <GlobalStyles />
       <Header />
-      {window.localStorage.getItem("publicKey") ? <></> : <SignInBar />}
+      <SignInBar />
 
       <Switch>
         {routes.map((routeItem) => {

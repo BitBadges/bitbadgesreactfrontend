@@ -29,9 +29,9 @@ class SearchProfile extends React.Component {
           <Fade bottom>
             <S.ContentWrapper>
               <Col lg={24} md={24} sm={24} xs={24}>
-                <h6>{"Enter a BitClout public key"}</h6>
+                <h6>{"Enter a BitClout Username"}</h6>
                 <Input
-                  placeholder="Enter public key here"
+                  placeholder="Enter username here"
                   onChange={this.handleChange}
                 ></Input>
                 <Button
@@ -43,10 +43,7 @@ class SearchProfile extends React.Component {
                 >
                   View profile
                 </Button>
-                <p>
-                  For a sample profile, search for
-                  BC1YLiXsLZvrySthVJPJozLr3rMSo2BARZ4VG525bhbsAJCTvwJQJCe
-                </p>
+                <p>For a sample profile, search for trevormil</p>
               </Col>
             </S.ContentWrapper>
           </Fade>

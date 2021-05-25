@@ -12,7 +12,7 @@ import {
 import BitcloutLogin from "react-bitclout-login";
 import useForm from "./useForm";
 import validate from "./validationRules";
-
+import axios from "axios";
 import * as S from "./styles";
 
 const Block = lazy(() => import("../Block"));
@@ -50,8 +50,31 @@ const IssueBadge = ({ title, content, id, t }) => {
   };
 
   const responseClout = (response) => {
-    window.localStorage.publicKey = response["publicKey"];
-    window.localStorage.jwt = response["jwt"];
+    for (let x in response) {
+      window.localStorage.setItem(x, response[x]);
+    }
+    console.log(response);
+    const url = `https://us-central1-bitbadges.cloudfunctions.net/api/username/${window.localStorage.getItem(
+      "publicKey"
+    )}`;
+    axios({
+      method: "get",
+      url: url,
+    })
+      .then((response) => {
+        console.log(response);
+        window.localStorage.setItem("username", response.data.Profile.Username);
+        window.location.href = "/home";
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else {
+          console.log(error);
+        }
+      });
   };
 
   return (
@@ -63,7 +86,7 @@ const IssueBadge = ({ title, content, id, t }) => {
               padding={true}
               title={"Issue a badge!"}
               content={
-                "The only two required fields are title and recipient. Note that everything is permanent and cannot be changed once submitted. This especially applies to the URLs because if the URL is shut down or discontinued, the badge will never be able to unpoint to that URL. Background colors must be a hex value in format '#FFFFFF' or a valid HTML color name.  Visit www.w3schools.com/colors/colors_names.asp for more info."
+                "The only two required fields are title and recipient. Note that everything is permanent and cannot be changed once submitted. This especially applies to the URLs because if the URL is shut down or discontinued, the badge will never be able to unpoint to that URL. Additionally, be aware that user accounts can both change username and change ownership, so if it is specific to one person, add accompanying details in the description. Background colors must be a hex value in format '#FFFFFF' or a valid HTML color name.  Visit www.w3schools.com/colors/colors_names.asp for more info."
               }
             />
           </Col>
@@ -100,7 +123,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                 <Input
                   type="text"
                   name="recipient"
-                  id="Public Key of Recipient"
+                  id="Username of Recipient"
                   placeholder=""
                   value={values.recipient || ""}
                   onChange={handleChange}
@@ -196,16 +219,9 @@ const IssueBadge = ({ title, content, id, t }) => {
                 <ValidationType type="validDates" />
               </Col>
               <S.ButtonContainer>
-                <BitcloutLogin
-                  accessLevel={4}
-                  onSuccess={responseClout}
-                  onFailure={responseClout}
-                  // customIcon={<LockOpenIcon/>}
-                />
                 <Button name="submit" type="submit">
                   {t("Submit")}
                 </Button>
-                <p>Before submitting every time, sign in to BitClout!</p>
               </S.ButtonContainer>
             </S.FormGroup>
           </Col>

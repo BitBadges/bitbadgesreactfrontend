@@ -1,14 +1,14 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const MiddleBlock = styled.section`
   position: relative;
-  padding: 7.5rem 0 3rem;
+  padding: 1rem 0 4rem;
   text-align: center;
   display: flex;
   justify-content: center;
 
   @media screen and (max-width: 768px) {
-    padding: 5.5rem 0 3rem;
+    padding: 1rem 0 4rem;
   }
 `;
 

@@ -18,6 +18,7 @@ const ScrollToTop = lazy(() => import("../../common/ScrollToTop"));
 const Issue = () => {
   return (
     <Container>
+      
       <ScrollToTop />
       <IssueBadge />
     </Container>

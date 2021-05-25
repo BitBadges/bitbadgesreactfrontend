@@ -74,6 +74,11 @@ const routes = [
     exact: true,
     component: "Faq",
   },
+  {
+    path: ["/signin"],
+    exact: true,
+    component: "SignIn",
+  },
 ];
 
 export default routes;

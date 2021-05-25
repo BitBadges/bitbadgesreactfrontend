@@ -50,7 +50,7 @@ const Home = () => {
         content={
           "BitBadges intends to be a completely open source and community driven project. BitBadges is not a company, just code and a community. Join the discord at discord.gg/Hc9eU73S"
         }
-        icon="https://bitbadges.s3.amazonaws.com/logo.png"
+        icon="./img/icons/logo.png"
         id="mission"
       />
       <MiddleBlock

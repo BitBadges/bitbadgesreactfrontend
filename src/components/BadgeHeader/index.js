@@ -70,9 +70,26 @@ let badgeData = {
                 color={validColor}
               >{`This badge is valid forever!`}</p>
             )}
-
-            <p align="center">{`Issued by: ${this.props.badge.issuer}`}</p>
-            <p align="center">{`Issued to: ${this.props.badge.recipient}`}</p>
+            <div display="inline">
+              <p align="center">{`Issued by @${this.props.badge.issuer} to @${this.props.badge.recipient}`}</p>
+              <p align="center">
+                <button
+                  onClick={() =>
+                    (window.location.href = `/user/${this.props.badge.issuer}`)
+                  }
+                >
+                  View Issuer Profile
+                </button>{" "}
+                -{" "}
+                <button
+                  onClick={() =>
+                    (window.location.href = `/user/${this.props.badge.issuer}`)
+                  }
+                >
+                  View Recipient Profile
+                </button>
+              </p>
+            </div>
           </>
         ) : (
           <p>Loading...</p>
