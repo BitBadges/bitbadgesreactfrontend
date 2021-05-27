@@ -228,6 +228,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   {t("Submit")}
                 </Button>
               </S.ButtonContainer>
+              <p align="right">Remember: submissions are permanent!</p>
             </S.FormGroup>
           </Col>
         </Row>

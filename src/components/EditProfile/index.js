@@ -53,7 +53,7 @@ const Contact = ({ badgesReceived, portfolioPages, title, content, id, t }) => {
                 padding={true}
                 title={"Add a page to your profile"}
                 content={
-                  "Page title and page number are required fields. For reference on badges you have received, scroll down to see all ids of badges you have received. Your page numbers and page locations are also displayed below. Whatever number you enter into the page number field, the newly created page will be placed at that location and all pages greater than or equal to will be shifted up one location."
+                  "Page title and page number are required fields. For reference on badges you have received, scroll down to see all ids of badges you have received. Your page numbers and page locations are also displayed below. Whatever number you enter into the page number field, the newly created page will be placed at that location and all pages greater than or equal to will be shifted up one location. If you have no pages currently, enter zero as page number."
                 }
               />
             </Col>
@@ -97,7 +97,6 @@ const Contact = ({ badgesReceived, portfolioPages, title, content, id, t }) => {
                     {t("Submit")}
                   </Button>
                   <p>Please double check everything!</p>
-                  <p>Once you submit, it is permanent</p>
                 </S.ButtonContainer>
               </S.FormGroup>
             </Col>

@@ -23,6 +23,8 @@ class BadgeBlock extends React.Component {
       issuerName: "",
     };
     this.getUsernameFromKeys = this.getUsernameFromKeys.bind(this);
+  }
+  componentWillMount() {
     this.getUsernameFromKeys(
       this.props.badge.issuer,
       this.props.badge.recipient
@@ -40,6 +42,8 @@ let badgeData = {
   */
 
   getUsernameFromKeys = async (issuerKey, recipientKey) => {
+    if (this.state.issuerName != "") return;
+    console.log(issuerKey, recipientKey);
     let url = `https://us-central1-bitbadges.cloudfunctions.net/api/userName/${issuerKey}`;
     let userName = null;
     await axios({
@@ -78,17 +82,17 @@ let badgeData = {
     let currDate = Date.now();
     let validDateStart = this.props.badge.validDateStart;
     let validDateEnd = this.props.badge.validDateEnd;
-
     let validDateStartStr = new Date(validDateStart).toDateString();
     let validDateEndStr = new Date(validDateEnd).toDateString();
     let valid = currDate >= validDateStart && currDate <= validDateEnd;
     let validColor = valid ? "green" : "red";
+    console.log(this.props.badge);
     return (
       <div>
         {this.props.badge.issuer ? (
           <>
             <h6 align="center">{this.props.badge.title}</h6>
-            {this.props.validDates ? (
+            {this.props.badge.recipient ? (
               <>
                 {valid ? (
                   <div align="center">

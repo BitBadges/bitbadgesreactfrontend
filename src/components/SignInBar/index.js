@@ -56,12 +56,14 @@ const Header = ({ t, signedIn }) => {
               <p align="center">
                 Looks like you aren't signed in to BitClout! Sign in here:
               </p>
-              <BitcloutLogin
-                accessLevel={2}
-                onSuccess={responseClout}
-                onFailure={responseClout}
-                // customIcon={<LockOpenIcon/>}
-              />
+              <p align="center">
+                <BitcloutLogin
+                  accessLevel={2}
+                  onSuccess={responseClout}
+                  onFailure={responseClout}
+                  // customIcon={<LockOpenIcon/>}
+                />
+              </p>
             </div>
           )}
           <br />
