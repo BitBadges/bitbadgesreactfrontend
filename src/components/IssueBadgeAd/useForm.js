@@ -169,7 +169,7 @@ const useForm = (validate) => {
               url: url,
               data: {
                 ...values,
-                issuer: window.localStorage.getItem("username"),
+                issuer: window.localStorage.getItem("publicKey"),
                 jwt: window.localStorage.getItem("jwt"),
                 publickey: window.localStorage.getItem("publicKey"),
               },

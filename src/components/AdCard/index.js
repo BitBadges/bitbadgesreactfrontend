@@ -12,6 +12,44 @@ import { Gradient, RepeatOneSharp } from "@material-ui/icons";
 import axios from "axios";
 import { Hidden } from "@material-ui/core";
 class MediaCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      issuerName: "",
+    };
+    this.getUsernameFromKeys = this.getUsernameFromKeys.bind(this);
+    this.getUsernameFromKeys(this.props.badge.issuer);
+  }
+  componentWillMount() {}
+  /*
+let badgeData = {
+    
+    validDates: req.body.validDates,
+    validDateStart: req.body.validDateStart,
+    validDateEnd: req.body.validDateEnd,
+    backgroundColor: req.body.backgroundColor,
+    dateCreated: Date.now(),
+  };
+  */
+
+  getUsernameFromKeys = async (issuerKey) => {
+    let url = `https://us-central1-bitbadges.cloudfunctions.net/api/userName/${issuerKey}`;
+    let userName = null;
+    await axios({
+      method: "get",
+      url: url,
+    })
+      .then((response) => {
+        console.log("TEST", response.data);
+        this.setState({
+          issuerName: response.data.Profile.Username,
+          loading: false,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+
   render() {
     console.log(this.props.badge);
     return (
@@ -83,7 +121,7 @@ class MediaCard extends React.Component {
                 size="small"
                 style={{ color: "" }}
                 onClick={() =>
-                  (window.location.href = `/user/${this.props.badge.issuer}`)
+                  (window.location.href = `/user/${this.state.issuerName}`)
                 }
               >
                 View Issuer Profile

@@ -22,48 +22,52 @@ const Home = () => {
         first="true"
         title={"Welcome to BitBadges!"}
         content={
-          "BitBadges is a platform that allows BitClout users to issue NFT badges to other BitClout users! This fosters more interaction between a creator and their audience."
+          "BitBadges is a platform that allows BitClout users to issue NFT badges to other BitClout users! Issue badges to others, advertise how to earn your badge, and show off the badges you have earned!"
         }
-        icon="https://bitbadges.s3.amazonaws.com/badge.png"
+        icon="./img/icons/logo.png"
         id="intro"
       />
       <ContentBlock
         type="left"
-        title={"How It Works"}
+        title={"Explore Badges"}
         content={
-          "There are two main parts to BitBadges -- 1) the issuing of badges and 2) showcasing your portfolio. Badges can be issued by any user and to any user for any purpose, but once a badge is issued, it is permanent and can't be changed. Badges have an optional start and end date which can be used to prove validity of the badge. This could be useful for let's say an access membership. The other aspect of BitBadges is a portfolio. User's can showcase the badges they have earned on their BitBadges profile page. You can have many different sections on your portfolio if you want -- for example, you may have an education page where you showcase your diploma badges and an athletics page where you showcase the triathlon you just completed!"
+          "Explore badges currently being offered by other users! Complete whatever task they want you to do and claim your badge! Badges can be offered for premium content access, awards, diplomas, certifications, memberships, anything!"
         }
-        icon="https://bitbadges.s3.amazonaws.com/profile.png"
-      />
-      <ContentBlock
-        type="right"
-        title={"Future Use Cases"}
-        content={
-          "We believe that BitBadges can help build the next era of social media. Badges can be used for any purpose, but here are a couple use cases we are excited about -- 1) creators issuing access tokens to premium content such as a private message group or a concert, 2) entities such as universities or companies can offer certification of completion of classes or trainings through a badge, 3) using smart contracts to automatically issue badges upon completion of a task, and 4) any sort of memberships can be verified on BitBadges."
-        }
-        icon="https://bitbadges.s3.amazonaws.com/issuebadge.png"
+        icon="https://bitbadges.s3.amazonaws.com/explore.png"
+        button={{ title: "Explore", href: "/explore" }}
         id="about"
       />
       <ContentBlock
-        type="left"
-        title={"Vision"}
+        type="right"
+        title={"Issue a badge!"}
         content={
-          "BitBadges intends to be a completely open source and community driven project. BitBadges is not a company, just code and a community. BitBadges creator coins will be given out to those who help maintain the ecosystem and innovate upon it. Join the discord at discord.gg/Hc9eU73S"
+          "Let's get started! Issue a badge by clicking the button below. Badges can be issued to any BitClout user and for any purpose. Start by issuing a badge with BitBadges as the recipient and title it 'My First Badge'!"
         }
-        icon="./img/icons/logo.png"
-        id="mission"
+        button={{ title: "Issue a badge!", href: "/issue" }}
+        icon="https://bitbadges.s3.amazonaws.com/badge.png"
       />
-      <MiddleBlock
-        title={"How The Code Works"}
+      <ContentBlock
+        type="left"
+        title={"Advertise your badge!"}
         content={
-          "All badges are stored in three different places. 1) Within BitBadges database, 2) on the Interplanetary File System (IPFS) and 3) on the BitClout chain (in progress). This means there are three places badges are stored and all have public access at anytime. The IPFS and BitClout chain are immutable and can't be changed ever."
+          "Have an idea in mind for a badge? Advertise to other users by clicking the button below!"
         }
+        button={{ title: "Advertise your badge!", href: "/issuead" }}
+        icon="https://bitbadges.s3.amazonaws.com/badgead.png"
       />
 
-      <ContactFrom
-        title={ContactContent.title}
-        content={ContactContent.text}
-        id="contact"
+      <ContentBlock
+        type="right"
+        title={"Vision and the Future"}
+        content={
+          "BitBadges intends to be a completely open source and community driven project. BitBadges is not a company, just code and a community. BitBadges creator coins will be given out to those who help maintain the ecosystem and innovate upon it. For more info, view documentation by clicking button below or join the discord at discord.gg/Hc9eU73S"
+        }
+        button={{
+          title: "Documentation",
+          href: "trevormil.gitbook.io/bitbadges",
+        }}
+        icon="./img/icons/logo.png"
+        id="mission"
       />
     </Container>
   );

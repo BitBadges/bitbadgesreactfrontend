@@ -23,20 +23,17 @@ const RightBlock = ({ title, content, button, icon, t, id }) => {
               <h6>{t(title)}</h6>
               <S.Content>{t(content)}</S.Content>
               <S.ButtonWrapper>
-                {button &&
-                  typeof button === "object" &&
-                  button.map((item, id) => {
-                    return (
-                      <Button
-                        key={id}
-                        color={item.color}
-                        width="true"
-                        onClick={() => scrollTo("about")}
-                      >
-                        {t(item.title)}
-                      </Button>
-                    );
-                  })}
+                {button ? (
+                  <Button
+                    name="submit"
+                    type="submit"
+                    onClick={() => (window.location.href = `${button.href}`)}
+                  >
+                    {button.title}
+                  </Button>
+                ) : (
+                  ""
+                )}
               </S.ButtonWrapper>
             </S.ContentWrapper>
           </Slide>

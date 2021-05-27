@@ -43,3 +43,9 @@ export const ServiceItem = styled(Col)`
   margin: 2rem 0;
   position: relative;
 `;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+`;

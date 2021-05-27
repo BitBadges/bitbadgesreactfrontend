@@ -17,11 +17,11 @@ const Explore = () => {
   return (
     <Container>
       <ScrollToTop />
-      <ContentBlock
-        type="right"
+      <MiddleBlock
         first="true"
         title={"Coming Soon"}
         icon="developer.svg"
+        content={"For now, check out the BitBadges docs at trevormil.gitbook.io/bitbadges/"}
         id="intro"
       />
     </Container>

@@ -10,13 +10,23 @@ import * as S from "./styles";
 import DateFnsUtils from "@date-io/date-fns";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ErrorIcon from "@material-ui/icons/Error";
-
+import axios from "axios";
 const Button = lazy(() => import("../../common/Button"));
 const Container = lazy(() => import("../../common/Container"));
 
 class BadgeBlock extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loading: true,
+      recipientName: "",
+      issuerName: "",
+    };
+    this.getUsernameFromKeys = this.getUsernameFromKeys.bind(this);
+    this.getUsernameFromKeys(
+      this.props.badge.issuer,
+      this.props.badge.recipient
+    );
   }
   /*
 let badgeData = {
@@ -28,6 +38,42 @@ let badgeData = {
     dateCreated: Date.now(),
   };
   */
+
+  getUsernameFromKeys = async (issuerKey, recipientKey) => {
+    let url = `https://us-central1-bitbadges.cloudfunctions.net/api/userName/${issuerKey}`;
+    let userName = null;
+    await axios({
+      method: "get",
+      url: url,
+    })
+      .then((response) => {
+        this.setState({
+          issuerName: response.data.Profile.Username,
+          loading: false,
+        });
+        userName = response.data.Profile.Username;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    if (recipientKey) {
+      url = `https://us-central1-bitbadges.cloudfunctions.net/api/userName/${recipientKey}`;
+      await axios({
+        method: "get",
+        url: url,
+      })
+        .then((response) => {
+          this.setState({
+            recipientName: response.data.Profile.Username,
+            loading: false,
+          });
+          userName = response.data.Profile.Username;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
   render() {
     let currDate = Date.now();
     let validDateStart = this.props.badge.validDateStart;
@@ -79,11 +125,11 @@ let badgeData = {
             )}
             {this.props.badge.recipient ? (
               <div display="inline">
-                <p align="center">{`Issued by @${this.props.badge.issuer} to @${this.props.badge.recipient}`}</p>
+                <p align="center">{`Issued by @${this.state.issuerName} to @${this.state.recipientName}`}</p>
                 <p align="center">
                   <button
                     onClick={() =>
-                      (window.location.href = `/user/${this.props.badge.issuer}`)
+                      (window.location.href = `/user/${this.state.issuerName}`)
                     }
                   >
                     View Issuer Profile
@@ -91,7 +137,7 @@ let badgeData = {
                   -{" "}
                   <button
                     onClick={() =>
-                      (window.location.href = `/user/${this.props.badge.recipient}`)
+                      (window.location.href = `/user/${this.state.recipientName}`)
                     }
                   >
                     View Recipient Profile
@@ -100,11 +146,11 @@ let badgeData = {
               </div>
             ) : (
               <div display="inline">
-                <p align="center">{`Issuer: @${this.props.badge.issuer}`}</p>
+                <p align="center">{`Issuer: @${this.state.issuerName}`}</p>
                 <p align="center">
                   <button
                     onClick={() =>
-                      (window.location.href = `/user/${this.props.badge.issuer}`)
+                      (window.location.href = `/user/${this.state.issuerName}`)
                     }
                   >
                     View Issuer Profile

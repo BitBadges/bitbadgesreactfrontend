@@ -18,15 +18,36 @@ class MediaCard extends React.Component {
       loading: true,
       badgeId: this.props.badgeId,
       badgeData: {},
+      issuerName: "",
     };
 
     this.getBadgeData = this.getBadgeData.bind(this);
 
-    this.getBadgeData();
+    this.getUsernameFromKeys = this.getUsernameFromKeys.bind(this);
   }
+  async componentWillMount() {
+    await this.getBadgeData();
+    await this.getUsernameFromKeys(this.state.badgeData.issuer);
+  }
+  getUsernameFromKeys = async (issuerKey) => {
+    let url = `https://us-central1-bitbadges.cloudfunctions.net/api/userName/${issuerKey}`;
+    let userName = null;
+    await axios({
+      method: "get",
+      url: url,
+    })
+      .then((response) => {
+        console.log("TEST", response.data);
+        this.setState({
+          issuerName: response.data.Profile.Username,
+          loading: false,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
 
-  getBadgeData() {
-    axios
+  async getBadgeData() {
+    await axios
       .get(
         `https://us-central1-bitbadges.cloudfunctions.net/api/badges/${this.state.badgeId}`
       )
@@ -37,6 +58,7 @@ class MediaCard extends React.Component {
         });
       });
   }
+
   render() {
     console.log(this.state.badgeData);
     return (

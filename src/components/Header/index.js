@@ -24,6 +24,9 @@ const Header = ({ t }) => {
   const MenuItem = () => {
     return (
       <Fragment>
+        <S.CustomNavLinkSmall onClick={() => (window.location.href = "/")}>
+          <S.Span>{t("Home")}</S.Span>
+        </S.CustomNavLinkSmall>
         <S.CustomNavLinkSmall onClick={() => (window.location.href = "/about")}>
           <S.Span>{t("About")}</S.Span>
         </S.CustomNavLinkSmall>
@@ -35,7 +38,9 @@ const Header = ({ t }) => {
         <S.CustomNavLinkSmall onClick={() => (window.location.href = `/view`)}>
           <S.Span>{t("View Profiles")}</S.Span>
         </S.CustomNavLinkSmall>
-        <S.CustomNavLinkSmall onClick={() => (window.location.href = "/issuead")}>
+        <S.CustomNavLinkSmall
+          onClick={() => (window.location.href = "/issuead")}
+        >
           <S.Span>{t("Create a Badge Ad")}</S.Span>
         </S.CustomNavLinkSmall>
         <S.CustomNavLinkSmall onClick={() => (window.location.href = "/issue")}>

@@ -8,6 +8,7 @@ import * as S from "./styles";
 const Button = lazy(() => import("../../common/Button"));
 
 class LeftContentBlock extends React.Component {
+  
   render() {
     return (
       <S.LeftContentBlock>

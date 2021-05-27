@@ -7,7 +7,7 @@ const routes = [
   {
     path: ["/about"],
     exact: true,
-    component: "Home",
+    component: "About",
   },
   {
     path: ["/explore"],

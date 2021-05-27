@@ -10,10 +10,7 @@ const SvgIcon = lazy(() => import("../../common/SvgIcon"));
 const Container = lazy(() => import("../../common/Container"));
 
 const Footer = ({ t }) => {
-  /*const handleChange = (event) => {
-    i18n.changeLanguage(event.target.value);
-  };*/
-
+  
   const SocialLink = ({ href, src }) => {
     return (
       <a
@@ -80,7 +77,7 @@ const Footer = ({ t }) => {
                 </S.LargeTarget>
                 <S.LargeTarget
                   left="true"
-                  href="https://documenter.getpostman.com/view/11647629/TzXumf4L"
+                  href="https://trevormil.gitbook.io/bitbadges/"
                 >
                   {t("Documentation")}
                 </S.LargeTarget>

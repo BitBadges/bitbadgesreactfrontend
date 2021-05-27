@@ -1,3 +1,4 @@
+import { lazy } from "react";
 import { Row, Col } from "antd";
 import { withTranslation } from "react-i18next";
 import Slide from "react-reveal/Slide";
@@ -6,7 +7,9 @@ import SvgIcon from "../../../common/SvgIcon";
 
 import * as S from "./styles";
 
-const LeftContentBlock = ({ icon, title, content, section, t, id }) => {
+const Button = lazy(() => import("../../../common/Button"));
+
+const LeftContentBlock = ({ icon, title, content, section, t, id, button }) => {
   return (
     <S.LeftContentBlock>
       <Row type="flex" justify="space-between" align="middle" id={id}>
@@ -40,6 +43,19 @@ const LeftContentBlock = ({ icon, title, content, section, t, id }) => {
                     })}
                 </Row>
               </S.ServiceWrapper>
+              <S.ButtonWrapper>
+                {button ? (
+                  <Button
+                    name="submit"
+                    type="submit"
+                    onClick={() => (window.location.href = `${button.href}`)}
+                  >
+                    {button.title}
+                  </Button>
+                ) : (
+                  ""
+                )}
+              </S.ButtonWrapper>
             </S.ContentWrapper>
           </Slide>
         </Col>

@@ -168,7 +168,26 @@ const useForm = (validate) => {
                 console.log(error);
               }
             });
-          console.log(err);
+          url = `https://us-central1-bitbadges.cloudfunctions.net/api/publicKey/${values.recipient}`;
+          await axios({
+            method: "get",
+            url: url,
+          })
+            .then((response) => {
+              console.log(response);
+              values.recipient = response.data.Profile.PublicKeyBase58Check;
+            })
+            .catch((error) => {
+              err = error;
+              if (error.response) {
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+              } else {
+                console.log(error);
+              }
+            });
+
           url = `https://us-central1-bitbadges.cloudfunctions.net/api/badges`;
           if (err == null) {
             axios({
@@ -176,7 +195,7 @@ const useForm = (validate) => {
               url: url,
               data: {
                 ...values,
-                issuer: window.localStorage.getItem("username"),
+                issuer: window.localStorage.getItem("publicKey"),
                 jwt: window.localStorage.getItem("jwt"),
                 publickey: window.localStorage.getItem("publicKey"),
               },
