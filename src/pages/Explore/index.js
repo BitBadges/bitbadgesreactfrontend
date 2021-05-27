@@ -3,7 +3,7 @@ import { lazy } from "react";
 import MiddleBlockContent from "../../content/MiddleBlockContent.json";
 import PortfolioPage from "../../components/PortfolioPage";
 import axios from "axios";
-import { Paper, Box } from "@material-ui/core";
+import { Paper, Box, CircularProgress } from "@material-ui/core";
 
 import { Row, Col } from "antd";
 import AdPage from "../../components/AdPage";
@@ -53,7 +53,9 @@ class User extends React.Component {
               badgePages={this.state.badgePages}
             ></AdPage>
           ) : (
-            <></>
+            <p align="center">
+              <CircularProgress size={100} />
+            </p>
           )}
         </Box>
       </Container>

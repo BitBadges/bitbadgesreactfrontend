@@ -1,5 +1,6 @@
 import React, { lazy } from "react";
 import axios from "axios";
+import { CircularProgress } from "@material-ui/core";
 const ContactFrom = lazy(() => import("../../components/ContactForm"));
 const ContentBlock = lazy(() => import("../../components/ContentBlock"));
 const MiddleBlock = lazy(() => import("../../components/MiddleBlock"));
@@ -47,10 +48,16 @@ class EditUser extends React.Component {
     return (
       <Container>
         <ScrollToTop />
-        <EditProfile
-          portfolioPages={this.state.portfolioPages}
-          badgesReceived={this.state.badgesReceived}
-        />
+        {!this.state.loading ? (
+          <EditProfile
+            portfolioPages={this.state.portfolioPages}
+            badgesReceived={this.state.badgesReceived}
+          />
+        ) : (
+          <p align="center">
+            <CircularProgress size={100} />
+          </p>
+        )}
       </Container>
     );
   }

@@ -157,6 +157,9 @@ const useForm = (validate) => {
           } else {
             badgeStr = badgeStr.split("\n");
           }
+          if (!values.description) {
+            values.description = "";
+          }
           console.log(badgeStr);
           url = `https://us-central1-bitbadges.cloudfunctions.net/api/users/portfolioPages`;
           if (err == null) {
@@ -167,6 +170,7 @@ const useForm = (validate) => {
                 pageTitle: values.pageTitle,
                 pageNum: Number(values.pageNum),
                 badges: badgeStr,
+                description: values.description,
                 jwt: window.localStorage.getItem("jwt"),
                 publickey: window.localStorage.getItem("publicKey"),
               },

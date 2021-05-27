@@ -82,6 +82,17 @@ const Contact = ({ badgesReceived, portfolioPages, title, content, id, t }) => {
                   <ValidationType type="pageNum" />
                 </Col>
                 <Col span={24}>
+                  <Input
+                    type="text"
+                    name="description"
+                    id="Description"
+                    placeholder="Enter short description here"
+                    value={values.description || ""}
+                    onChange={handleChange}
+                  />
+                  <ValidationType type="description" />
+                </Col>
+                <Col span={24}>
                   <TextArea
                     placeholder="Enter a single badge id per line"
                     value={values.badges || ""}

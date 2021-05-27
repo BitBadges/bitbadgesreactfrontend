@@ -3,7 +3,7 @@ import { lazy } from "react";
 import MiddleBlockContent from "../../content/MiddleBlockContent.json";
 import PortfolioPage from "../../components/PortfolioPage";
 import axios from "axios";
-import { Paper, Box } from "@material-ui/core";
+import { Paper, Box, CircularProgress } from "@material-ui/core";
 
 import { Row, Col } from "antd";
 import BadgeBody from "../../components/BadgeBody";
@@ -49,15 +49,18 @@ class Badge extends React.Component {
       <div border="100px solid black">
         <Container>
           <ScrollToTop />
-
-          <Box
-            border={5}
-            borderRadius={"10%"}
-            borderColor={this.state.badge.backgroundColor}
-          >
-            <BadgeHeader badge={this.state.badge} />
-            <BadgeBody badge={this.state.badge} />
-          </Box>
+          {this.state.loading ? (
+            <CircularProgress size={100} />
+          ) : (
+            <Box
+              border={5}
+              borderRadius={"10%"}
+              borderColor={this.state.badge.backgroundColor}
+            >
+              <BadgeHeader badge={this.state.badge} />
+              <BadgeBody badge={this.state.badge} />
+            </Box>
+          )}
         </Container>
       </div>
     );
