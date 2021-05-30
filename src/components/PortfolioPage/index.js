@@ -128,6 +128,13 @@ const PortfolioPage = ({
                           <S.Content>
                             <h6>{pageObject.pageTitle}</h6>
                           </S.Content>
+                          <S.Content>
+                            {pageObject.description ? (
+                              <p align="center">{pageObject.description}</p>
+                            ) : (
+                              <></>
+                            )}
+                          </S.Content>
                           <Grid
                             container
                             direction="row"

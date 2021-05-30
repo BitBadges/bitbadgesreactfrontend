@@ -151,6 +151,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                 <Button name="submit" type="submit">
                   {t("Submit")}
                 </Button>
+                <p id="issue-submitad"></p>
               </S.ButtonContainer>
             </S.FormGroup>
           </Col>

@@ -107,6 +107,8 @@ const useForm = (validate) => {
   }
 
   const handleSubmit = (event) => {
+    document.getElementById("issue-submitad").innerText =
+      "Submitting... Don't press submit button again";
     event.preventDefault();
 
     if (!values.externalUrl) {
@@ -123,6 +125,9 @@ const useForm = (validate) => {
     }
     if (!values.preReqs) {
       values.preReqs = "";
+    }
+    if (!values.backgroundColor) {
+      values.backgroundColor = "";
     }
 
     event.preventDefault();

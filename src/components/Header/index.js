@@ -41,10 +41,10 @@ const Header = ({ t }) => {
         <S.CustomNavLinkSmall
           onClick={() => (window.location.href = "/issuead")}
         >
-          <S.Span>{t("Create a Badge Ad")}</S.Span>
+          <S.Span>{t("Create Ad")}</S.Span>
         </S.CustomNavLinkSmall>
         <S.CustomNavLinkSmall onClick={() => (window.location.href = "/issue")}>
-          <S.Span>{t("Issue a Badge")}</S.Span>
+          <S.Span>{t("Issue Badge")}</S.Span>
         </S.CustomNavLinkSmall>
         <S.CustomNavLinkSmall style={{ width: "180px" }}>
           <S.Span>

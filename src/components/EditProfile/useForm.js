@@ -113,6 +113,8 @@ const useForm = (validate) => {
   };
 
   const handleSubmit = (event) => {
+    document.getElementById("issue-submitprofilepage").innerText =
+      "Submitting... Don't press submit button again";
     event.preventDefault();
     setErrors(validate(values));
 

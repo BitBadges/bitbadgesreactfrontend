@@ -19,7 +19,7 @@ class BadgeBlock extends React.Component {
     super(props);
     this.state = {
       loading: true,
-      recipientName: "",
+      recipientNames: [],
       issuerName: "",
     };
     this.getUsernameFromKeys = this.getUsernameFromKeys.bind(this);
@@ -27,13 +27,7 @@ class BadgeBlock extends React.Component {
   componentWillMount() {
     this.getUsernameFromKeys(
       this.props.badge.issuer,
-      this.props.badge.recipient
-    );
-  }
-  componentWillReceiveProps() {
-    this.getUsernameFromKeys(
-      this.props.badge.issuer,
-      this.props.badge.recipient
+      this.props.badge.recipients
     );
   }
   /*
@@ -47,9 +41,8 @@ let badgeData = {
   };
   */
 
-  getUsernameFromKeys = async (issuerKey, recipientKey) => {
+  getUsernameFromKeys = async (issuerKey, recipientKeys) => {
     if (this.state.issuerName != "") return;
-    console.log(issuerKey, recipientKey);
     let url = `https://us-central1-bitbadges.cloudfunctions.net/api/userName/${issuerKey}`;
     let userName = null;
 
@@ -66,23 +59,33 @@ let badgeData = {
       .catch((err) => {
         console.log(err);
       });
-
-    if (recipientKey) {
-      url = `https://us-central1-bitbadges.cloudfunctions.net/api/userName/${recipientKey}`;
-      await axios({
-        method: "get",
-        url: url,
-      })
-        .then((response) => {
-          this.setState({
-            recipientName: response.data.Profile.Username,
-          });
-          userName = response.data.Profile.Username;
+    
+    if (recipientKeys) {
+      this.setState({ recipientNames: [] });
+      for (let key in recipientKeys) {
+        console.log(key);
+        key = recipientKeys[key];
+        console.log(key);
+        url = `https://us-central1-bitbadges.cloudfunctions.net/api/userName/${key}`;
+        await axios({
+          method: "get",
+          url: url,
         })
-        .catch((err) => {
-          console.log(err);
-        });
+          .then((response) => {
+            this.setState({
+              recipientNames: [
+                ...this.state.recipientNames,
+                response.data.Profile.Username,
+              ],
+            });
+            userName = response.data.Profile.Username;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     }
+    console.log(this.state.recipientNames);
     this.setState({
       loading: false,
     });
@@ -95,6 +98,11 @@ let badgeData = {
     let validDateEndStr = new Date(validDateEnd).toDateString();
     let valid = currDate >= validDateStart && currDate <= validDateEnd;
     let validColor = valid ? "green" : "red";
+
+    let recipientsStr = "Recipients: ";
+    this.state.recipientNames.forEach((str) => {
+      recipientsStr += `@${str} `;
+    });
     console.log(this.props.badge);
     return (
       <div>
@@ -107,7 +115,7 @@ let badgeData = {
             {this.props.badge.issuer ? (
               <>
                 <h6 align="center">{this.props.badge.title}</h6>
-                {this.props.badge.recipient ? (
+                {this.props.badge.recipients ? (
                   <>
                     {valid ? (
                       <div align="center">
@@ -142,9 +150,11 @@ let badgeData = {
                     color={validColor}
                   >{`This badge is valid forever!`}</p>
                 )}
-                {this.props.badge.recipient ? (
+                {this.props.badge.recipients ? (
                   <div display="inline">
-                    <p align="center">{`Issued by @${this.state.issuerName} to @${this.state.recipientName}`}</p>
+                    <p align="center">{`Issuer: @${this.state.issuerName}`}</p>
+                    <p align="center">{recipientsStr}</p>
+
                     <p align="center">
                       <button
                         onClick={() =>
@@ -153,14 +163,14 @@ let badgeData = {
                       >
                         View Issuer Profile
                       </button>{" "}
-                      -{" "}
+                      {/*-{" "}
                       <button
                         onClick={() =>
                           (window.location.href = `/user/${this.state.recipientName}`)
                         }
                       >
                         View Recipient Profile
-                      </button>
+                      </button>*/}
                     </p>
                   </div>
                 ) : (

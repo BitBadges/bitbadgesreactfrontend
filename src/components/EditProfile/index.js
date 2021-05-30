@@ -107,6 +107,7 @@ const Contact = ({ badgesReceived, portfolioPages, title, content, id, t }) => {
                   <Button name="submit" type="submit">
                     {t("Submit")}
                   </Button>
+                  <p id="issue-submitprofilepage"></p>
                   <p>Please double check everything!</p>
                 </S.ButtonContainer>
               </S.FormGroup>

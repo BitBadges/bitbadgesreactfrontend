@@ -2,7 +2,7 @@ import React, { lazy } from "react";
 import { Row, Col } from "antd";
 import Zoom from "react-reveal/Zoom";
 import { withTranslation } from "react-i18next";
-import { Checkbox } from "@material-ui/core";
+import { Checkbox, CircularProgress } from "@material-ui/core";
 
 import DateFnsUtils from "@date-io/date-fns";
 import {
@@ -23,6 +23,7 @@ const TextArea = lazy(() => import("../../common/TextArea"));
 const IssueBadge = ({ title, content, id, t }) => {
   const { values, errors, handleChange, handleSubmit } = useForm(validate);
   const [checked, setChecked] = React.useState(false);
+  const [submitting, setSubmitting] = React.useState(false);
 
   const ValidationType = ({ type }) => {
     const ErrorMessage = errors[type];
@@ -49,32 +50,8 @@ const IssueBadge = ({ title, content, id, t }) => {
     setChecked(event.target.checked);
   };
 
-  const responseClout = (response) => {
-    for (let x in response) {
-      window.localStorage.setItem(x, response[x]);
-    }
-    console.log(response);
-    const url = `https://us-central1-bitbadges.cloudfunctions.net/api/username/${window.localStorage.getItem(
-      "publicKey"
-    )}`;
-    axios({
-      method: "get",
-      url: url,
-    })
-      .then((response) => {
-        console.log(response);
-        window.localStorage.setItem("username", response.data.Profile.Username);
-        window.location.href = "/home";
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else {
-          console.log(error);
-        }
-      });
+  const handleSubmitSpinner = (event) => {
+    setSubmitting(true);
   };
 
   return (
@@ -123,13 +100,14 @@ const IssueBadge = ({ title, content, id, t }) => {
               <Col span={24}>
                 <Input
                   type="text"
-                  name="recipient"
-                  id="Recipient's BitClout Username"
+                  name="recipients"
+                  id="Recipient's BitClout Usernames"
                   placeholder=""
-                  value={values.recipient || ""}
+                  value={values.recipients || ""}
                   onChange={handleChange}
+                  additionalInfo="*Separate names using a comma. Use tool below to get public keys for your coin holders!"
                 />
-                <ValidationType type="recipient" />
+                <ValidationType type="recipients" />
               </Col>
               <Col span={24}>
                 <Input
@@ -227,6 +205,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                 <Button name="submit" type="submit">
                   {t("Submit")}
                 </Button>
+                <p id="issue-submit"></p>
               </S.ButtonContainer>
               <p align="right">Remember: submissions are permanent!</p>
             </S.FormGroup>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { notification } from "antd";
 import axios from "axios";
+import { CircularProgress } from "@material-ui/core";
 
 const useForm = (validate) => {
   const [values, setValues] = useState({});
@@ -107,6 +108,9 @@ const useForm = (validate) => {
   }
 
   const handleSubmit = (event) => {
+    document.getElementById("issue-submit").innerText =
+      "Submitting... Don't press submit button again";
+
     event.preventDefault();
 
     let checked = event.target[6].checked;
@@ -131,6 +135,9 @@ const useForm = (validate) => {
     }
     if (!values.description) {
       values.description = "";
+    }
+    if (!values.backgroundColor) {
+      values.backgroundColor = "";
     }
 
     event.preventDefault();
@@ -168,26 +175,43 @@ const useForm = (validate) => {
                 console.log(error);
               }
             });
-          url = `https://us-central1-bitbadges.cloudfunctions.net/api/publicKey/${values.recipient}`;
-          await axios({
-            method: "get",
-            url: url,
-          })
-            .then((response) => {
-              console.log(response);
-              values.recipient = response.data.Profile.PublicKeyBase58Check;
-            })
-            .catch((error) => {
-              err = error;
-              if (error.response) {
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-              } else {
-                console.log(error);
-              }
-            });
 
+          values.recipients = values.recipients.split(" ").join("").split(",");
+          console.log(values.recipients);
+          let recipients = [];
+
+          for (let recipient in values.recipients) {
+            recipient = values.recipients[recipient];
+            console.log(recipient);
+            url = `https://us-central1-bitbadges.cloudfunctions.net/api/publicKey/${recipient}`;
+            await axios({
+              method: "get",
+              url: url,
+            })
+              .then((response) => {
+                console.log(response);
+                if (response.data.error) {
+                  recipients.push(recipient);
+                } else {
+                  recipients.push(response.data.Profile.PublicKeyBase58Check);
+                }
+              })
+              .catch((error) => {
+                err = error;
+                if (error.response) {
+                  console.log(error.response.data);
+                  console.log(error.response.status);
+                  console.log(error.response.headers);
+                } else {
+                  console.log(error);
+                }
+              });
+          }
+          console.log(recipients);
+
+          values.recipients = recipients;
+
+          console.log(values.recipients);
           url = `https://us-central1-bitbadges.cloudfunctions.net/api/badges`;
           if (err == null) {
             axios({
