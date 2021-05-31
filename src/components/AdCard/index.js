@@ -55,7 +55,14 @@ let badgeData = {
     return (
       <>
         {this.props.badge ? (
-          <Card raised style={{ maxWidth: "300px" }}>
+          <Card
+            raised
+            style={{
+              maxWidth: "300px",
+              overflowWrap: "break-word",
+              wordWrap: "break-word",
+            }}
+          >
             {this.props.badge.imageUrl ? (
               <img
                 src={this.props.badge.imageUrl}

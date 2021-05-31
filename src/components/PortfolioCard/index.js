@@ -62,7 +62,14 @@ class MediaCard extends React.Component {
   render() {
     console.log(this.state.badgeData);
     return (
-      <Card raised style={{ maxWidth: "450px" }}>
+      <Card
+        raised
+        style={{
+          maxWidth: "300px",
+          overflowWrap: "break-word",
+          wordWrap: "break-word",
+        }}
+      >
         {!this.state.loading ? (
           <>
             {this.state.badgeData.imageUrl ? (

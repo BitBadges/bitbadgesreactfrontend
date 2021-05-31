@@ -53,7 +53,7 @@ const Contact = ({ badgesReceived, portfolioPages, title, content, id, t }) => {
                 padding={true}
                 title={"Add a page to your profile"}
                 content={
-                  "Page title and page number are required fields. For reference on badges you have received, scroll down to see all ids of badges you have received. Your page numbers and page locations are also displayed below. Whatever number you enter into the page number field, the newly created page will be placed at that location and all pages greater than or equal to will be shifted up one location. If you have no pages currently, enter zero as page number."
+                  "Show off the badges you have earned! Group certain badges into a page, give it a title and description, and showcase it on your profile!"
                 }
               />
             </Col>
@@ -67,6 +67,7 @@ const Contact = ({ badgesReceived, portfolioPages, title, content, id, t }) => {
                     placeholder="Enter page title here"
                     value={values.pageTitle || ""}
                     onChange={handleChange}
+                    additionalInfo="*Required and must not be same as any of your other page titles"
                   />
                   <ValidationType type="pageTitle" />
                 </Col>
@@ -75,9 +76,10 @@ const Contact = ({ badgesReceived, portfolioPages, title, content, id, t }) => {
                     type="number"
                     name="pageNum"
                     id="Page Number"
-                    placeholder="Enter page number here"
+                    placeholder="Enter page number here."
                     value={values.pageNum || ""}
                     onChange={handleChange}
+                    additionalInfo="*View your current page numbers below under 'My Pages'. If you have no pages, enter zero as the page number. Otherwise, the page you are creating will be placed at the specified page number and all other pages greater or equal to will be shifted up one location."
                   />
                   <ValidationType type="pageNum" />
                 </Col>
@@ -94,11 +96,12 @@ const Contact = ({ badgesReceived, portfolioPages, title, content, id, t }) => {
                 </Col>
                 <Col span={24}>
                   <TextArea
-                    placeholder="Enter a single badge id per line"
+                    placeholder="Enter a single badge id per line."
                     value={values.badges || ""}
                     name="badges"
                     id="Badges"
                     onChange={handleChange}
+                    additionalInfo="*Separate badge IDs with a new line. Badge IDs can be obtained below under 'All Received Badges'. They must be badges that you own.."
                   />
                   <ValidationType type="badges" />
                 </Col>
@@ -117,13 +120,13 @@ const Contact = ({ badgesReceived, portfolioPages, title, content, id, t }) => {
         </S.Contact>
 
         <Row type="flex" justify="space-between">
-          <Col lg={24} md={24} sm={24} xs={12}>
+          <Col lg={24} md={24} sm={24} xs={24}>
             <PageList
               title="My Pages"
               hashArray={getPageTitleArray()}
             ></PageList>
           </Col>
-          <Col lg={24} md={24} sm={24} xs={12}>
+          <Col lg={24} md={24} sm={24} xs={24}>
             <PortfolioPage
               portfolioPages={[
                 { pageTitle: "All Received Badges", badges: badgesReceived },

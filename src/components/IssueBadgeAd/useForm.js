@@ -193,13 +193,19 @@ const useForm = (validate) => {
                 } else {
                   alert(error);
                 }
+
+                document.getElementById("issue-submitad").innerText = "";
                 setShouldSubmit(false);
               });
           } else {
+            document.getElementById("issue-submitad").innerText = "";
             alert("Error: Could not create badge!");
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          document.getElementById("issue-submitad").innerText = "";
+        });
     }
   };
 

@@ -117,7 +117,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   placeholder=""
                   value={values.imageUrl || ""}
                   onChange={handleChange}
-                  additionalInfo="*Note that once submitted, this badge can never unpoint to this URL. Consider using IPFS or another permanent file storage option. If blank, defaults to solid image of background color."
+                  additionalInfo="*Note that once submitted, this badge can never unpoint to this URL. Consider using IPFS, another permanent file storage option, or a URL that you have control over. If blank, defaults to solid image of background color."
                 />
                 <ValidationType type="imageUrl" />
               </Col>
@@ -129,7 +129,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   placeholder=""
                   value={values.externalUrl || ""}
                   onChange={handleChange}
-                  additionalInfo="*Note that once submitted, this badge can never unpoint to this URL. Consider using IPFS or another permanent file storage option."
+                  additionalInfo="*Note that once submitted, this badge can never unpoint to this URL. Consider using IPFS, another permanent file storage option , or a URL that you have control over."
                 />
                 <ValidationType type="externalUrl" />
               </Col>

@@ -56,6 +56,10 @@ class Badge extends React.Component {
               border={5}
               borderRadius={"10%"}
               borderColor={this.state.badge.backgroundColor}
+              style={{
+                overflowWrap: "break-word",
+                wordWrap: "break-word",
+              }}
             >
               <BadgeHeader badge={this.state.badge} />
               <BadgeBody badge={this.state.badge} />

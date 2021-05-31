@@ -115,6 +115,7 @@ const useForm = (validate) => {
   const handleSubmit = (event) => {
     document.getElementById("issue-submitprofilepage").innerText =
       "Submitting... Don't press submit button again";
+
     event.preventDefault();
     setErrors(validate(values));
 
@@ -190,11 +191,21 @@ const useForm = (validate) => {
                 } else {
                   alert(error);
                 }
+
+                document.getElementById("issue-submitprofilepage").innerText =
+                  "";
                 setShouldSubmit(false);
               });
+          } else {
+            alert(`Error: ${err}`);
+            document.getElementById("issue-submitprofilepage").innerText = "";
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+
+          document.getElementById("issue-submitprofilepage").innerText = "";
+        });
     }
   };
 

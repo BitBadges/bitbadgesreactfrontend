@@ -62,7 +62,11 @@ class User extends React.Component {
               portfolioPages={this.state.portfolioPages}
             ></PortfolioPage>
             <Row
-              style={{ margin: "50px 0px" }}
+              style={{
+                margin: "50px 0px",
+                overflowWrap: "break-word",
+                wordWrap: "break-word",
+              }}
               type="flex"
               justify="space-between"
             >
@@ -70,6 +74,7 @@ class User extends React.Component {
                 <List
                   title="All Issued Badges"
                   hashArray={this.state.badgesIssued}
+                  s
                 ></List>
               </Col>
               <Col lg={11} md={11} sm={12} xs={24}>

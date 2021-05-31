@@ -10,7 +10,6 @@ const SvgIcon = lazy(() => import("../../common/SvgIcon"));
 const Container = lazy(() => import("../../common/Container"));
 
 const Footer = ({ t }) => {
-  
   const SocialLink = ({ href, src }) => {
     return (
       <a
@@ -132,7 +131,7 @@ const Footer = ({ t }) => {
             >
               <S.NavLink to="/">
                 <S.LogoContainer>
-                  <img src="./img/icons/logo.png" />
+                  <img src={process.env.PUBLIC_URL + "/img/icons/logo.png"} />
                 </S.LogoContainer>
               </S.NavLink>
               <S.FooterContainer>

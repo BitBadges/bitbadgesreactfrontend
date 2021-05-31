@@ -109,7 +109,7 @@ const useForm = (validate) => {
 
   const handleSubmit = (event) => {
     document.getElementById("issue-submit").innerText =
-      "Submitting... Don't press submit button again";
+      "Submitting... Please don't press submit button again";
 
     event.preventDefault();
 
@@ -175,9 +175,14 @@ const useForm = (validate) => {
                 console.log(error);
               }
             });
+          if (typeof values.recipients === "string") {
+            values.recipients = values.recipients
+              .split(" ")
+              .join("")
+              .split(",");
+            console.log(values.recipients);
+          }
 
-          values.recipients = values.recipients.split(" ").join("").split(",");
-          console.log(values.recipients);
           let recipients = [];
 
           for (let recipient in values.recipients) {
@@ -238,13 +243,18 @@ const useForm = (validate) => {
                 } else {
                   alert(error);
                 }
+                document.getElementById("issue-submit").innerText = "";
                 setShouldSubmit(false);
               });
           } else {
             alert("Error: Could not create badge!");
+            document.getElementById("issue-submit").innerText = "";
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          document.getElementById("issue-submit").innerText = "";
+        });
     }
   };
 
