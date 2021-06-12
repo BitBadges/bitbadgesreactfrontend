@@ -83,7 +83,7 @@ const routes = [
     path: ["/signin"],
     exact: true,
     component: "SignIn",
-  },
+  }
 ];
 
 export default routes;

@@ -3,7 +3,7 @@ import { lazy } from "react";
 import MiddleBlockContent from "../../content/MiddleBlockContent.json";
 import PortfolioPage from "../../components/PortfolioPage";
 import axios from "axios";
-import { Paper, Box } from "@material-ui/core";
+import { Paper, Box, CircularProgress } from "@material-ui/core";
 
 import { Row, Col } from "antd";
 import BadgeBody from "../../components/BadgeBody";
@@ -26,11 +26,17 @@ class Badge extends React.Component {
     };
 
     this.getBadgeData = this.getBadgeData.bind(this);
+  }
+  componentWillMount() {
     this.getBadgeData();
   }
 
-  getBadgeData() {
-    axios
+  componentWillReceiveProps() {
+    this.getBadgeData();
+  }
+
+  async getBadgeData() {
+    await axios
       .get(
         `https://us-central1-bitbadges.cloudfunctions.net/api/badgePages/${this.state.badgeId}`
       )
@@ -59,8 +65,22 @@ class Badge extends React.Component {
               wordWrap: "break-word",
             }}
           >
-            <BadgeHeader badge={this.state.badge} />
-            <BadgeBody badge={this.state.badge} />
+            {this.state.badge.issuer ? (
+              <>
+                <BadgeHeader badge={this.state.badge} />
+                <BadgeBody badge={this.state.badge} />
+              </>
+            ) : (
+              <CircularProgress size={100} />
+            )}
+            {this.state.badge.issuer ===
+            window.localStorage.getItem("publicKey") ? (
+              <p align="center">
+                *To delete this ad, go to your profile and click edit profile
+              </p>
+            ) : (
+              <></>
+            )}
           </Box>
         </Container>
       </div>

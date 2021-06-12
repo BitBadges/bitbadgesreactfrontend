@@ -26,11 +26,7 @@ const useForm = (validate) => {
         .then((response) => {
           console.log(response);
           response.data.Hodlers.forEach((hodler) => {
-            if (hodler.ProfileEntryResponse) {
-              hodlerArr.push(hodler.ProfileEntryResponse.Username);
-            } else {
-              hodlerArr.push(hodler.HODLerPublicKeyBase58Check);
-            }
+            hodlerArr.push(hodler.HODLerPublicKeyBase58Check);
           });
           document.getElementById("hodler-result-instructions").innerText =
             "Copy and paste the following into the recipients box above:";

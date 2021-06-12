@@ -12,12 +12,20 @@ const Block = lazy(() => import("../Block"));
 const Input = lazy(() => import("../../common/Input"));
 const Button = lazy(() => import("../../common/Button"));
 
-const List = lazy(() => import("../../common/List"));
+const AdList = lazy(() => import("../../common/AdList"));
 const PageList = lazy(() => import("../../common/PageList"));
 const TextArea = lazy(() => import("../../common/TextArea"));
 const PortfolioPage = lazy(() => import("../../components/PortfolioPage"));
 
-const Contact = ({ badgesReceived, portfolioPages, title, content, id, t }) => {
+const Contact = ({
+  badgesReceived,
+  badgesCreated,
+  portfolioPages,
+  title,
+  content,
+  id,
+  t,
+}) => {
   const { values, errors, handleChange, handleSubmit } = useForm(validate);
 
   const ValidationType = ({ type }) => {
@@ -133,6 +141,12 @@ const Contact = ({ badgesReceived, portfolioPages, title, content, id, t }) => {
               ]}
               showTitle={false}
             />
+          </Col>
+          <Col lg={24} md={24} sm={24} xs={24}>
+            <AdList
+              title="All Badge Ads"
+              hashArray={badgesCreated}
+            ></AdList>
           </Col>
         </Row>
       </S.ContactContainer>

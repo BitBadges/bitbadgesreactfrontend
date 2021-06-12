@@ -84,7 +84,7 @@ class MediaCard extends React.Component {
                 style={{
                   background: this.state.badgeData.backgroundColor,
                 }}
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/TransparentPlaceholder.png/120px-TransparentPlaceholder.png"
+                src="https://bitbadges.s3.amazonaws.com/blankbadge.png"
                 width="200px"
                 height="200px"
               />
@@ -107,11 +107,21 @@ class MediaCard extends React.Component {
                 size="small"
                 style={{ color: "" }}
                 onClick={() =>
+                  navigator.clipboard.writeText(this.state.badgeId)
+                }
+              >
+                Copy ID
+              </Button>
+              <Button
+                size="small"
+                style={{ color: "" }}
+                onClick={() =>
                   (window.location.href = `/badge/${this.state.badgeData.id}`)
                 }
               >
                 View Badge
               </Button>
+
               <Button
                 size="small"
                 style={{ color: "" }}

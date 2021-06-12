@@ -109,108 +109,67 @@ const useForm = (validate) => {
   const handleSubmit = (event) => {
     document.getElementById("issue-submitad").innerText =
       "Submitting... Don't press submit button again";
+
+    document.getElementById("submit-ad-button").setAttribute("disabled", true);
     event.preventDefault();
 
-    if (!values.externalUrl) {
-      values.externalUrl = "";
-    }
-    if (!values.imageUrl) {
-      values.imageUrl = "";
-    }
-    if (!values.description) {
-      values.description = "";
-    }
-    if (!values.validity) {
-      values.validity = "";
-    }
-    if (!values.preReqs) {
-      values.preReqs = "";
-    }
-    if (!values.backgroundColor) {
-      values.backgroundColor = "";
-    }
+    let errorObj = validate(values);
+    setErrors(errorObj);
 
-    event.preventDefault();
-    console.log(values);
-    setErrors(validate(values));
-
-    if (Object.keys(values).length >= 2) {
+    if (Object.keys(errorObj).length === 0) {
+      let result = window.confirm(
+        `Confirm the details of your badge ad. \nAd will be issued by whatever account is chosen next on the pop up window login page.\nTitle: ${values.title}\nValidity: ${values.validity}\nPre Requisities: ${values.preReqs}\nDescription: ${values.description}\nBackground Color: ${values.backgroundColor}\nImage URL: ${values.imageUrl}\nExternal URL: ${values.externalUrl}`
+      );
+      if (!result) {
+        document.getElementById("issue-submitad").innerText = "";
+        document.getElementById("submit-ad-button").removeAttribute("disabled");
+        return;
+      }
       initLogin(2, true)
         .then(async (e) => {
           for (let x in e) {
             window.localStorage.setItem(x, e[x]);
           }
-          let err = null;
-          let url = `https://us-central1-bitbadges.cloudfunctions.net/api/username/${window.localStorage.getItem(
-            "publicKey"
-          )}`;
+        })
+        .then(async () => {
+          let url = `https://us-central1-bitbadges.cloudfunctions.net/api/badgePages`;
           await axios({
-            method: "get",
+            method: "post",
             url: url,
-          })
-            .then((response) => {
-              console.log(response);
-              window.localStorage.setItem(
-                "username",
-                response.data.Profile.Username
+            data: {
+              ...values,
+              issuer: window.localStorage.getItem("publicKey"),
+              jwt: window.localStorage.getItem("jwt"),
+              publickey: window.localStorage.getItem("publicKey"),
+            },
+          }).then((response) => {
+            if (response.data.general) {
+              setShouldSubmit(false);
+              return Promise.reject(
+                `Could not create badge page: ${response.data.general}`
               );
-            })
-            .catch((error) => {
-              err = error;
-              if (error.response) {
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-              } else {
-                console.log(error);
-              }
-            });
-          console.log(err);
-          url = `https://us-central1-bitbadges.cloudfunctions.net/api/badgePages`;
-          console.log(window.localStorage.getItem("username"));
-          if (err == null) {
-            axios({
-              method: "post",
-              url: url,
-              data: {
-                ...values,
-                issuer: window.localStorage.getItem("publicKey"),
-                jwt: window.localStorage.getItem("jwt"),
-                publickey: window.localStorage.getItem("publicKey"),
-              },
-            })
-              .then((response) => {
-                console.log(response);
-                setBadgeId(response.data.id);
-                setShouldSubmit(true);
-              })
-              .catch((error) => {
-                if (error.response) {
-                  console.log(error.response.data);
-                  console.log(error.response.status);
-                  console.log(error.response.headers);
-                  alert(error.response.data.general);
-                } else {
-                  alert(error);
-                }
-
-                document.getElementById("issue-submitad").innerText = "";
-                setShouldSubmit(false);
-              });
-          } else {
-            document.getElementById("issue-submitad").innerText = "";
-            alert("Error: Could not create badge!");
-          }
+            }
+            setBadgeId(response.data.id);
+            setShouldSubmit(true);
+          });
         })
         .catch((err) => {
           console.log(err);
+          alert(`Error: ${err}`);
+
           document.getElementById("issue-submitad").innerText = "";
+          document
+            .getElementById("submit-ad-button")
+            .removeAttribute("disabled");
         });
+    } else {
+      document.getElementById("issue-submitad").innerText = "";
+      document.getElementById("submit-ad-button").removeAttribute("disabled");
     }
   };
 
   useEffect(() => {
-    if (/*Object.keys(errors).length === 0 && */ shouldSubmit) {
+    if (Object.keys(errors).length === 0 && shouldSubmit) {
       setValues("");
       window.location.href = `/badgePage/${badgeId}`;
     }

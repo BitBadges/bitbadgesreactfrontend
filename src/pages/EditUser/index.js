@@ -52,6 +52,7 @@ class EditUser extends React.Component {
           <EditProfile
             portfolioPages={this.state.portfolioPages}
             badgesReceived={this.state.badgesReceived}
+            badgesCreated={this.state.badgesCreated}
           />
         ) : (
           <p align="center">

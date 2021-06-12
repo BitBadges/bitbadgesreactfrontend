@@ -100,7 +100,6 @@ const IssueBadge = ({ title, content, id, t }) => {
                 />
                 <ValidationType type="preReqs" />
               </Col>
-
               <Col span={24}>
                 <Input
                   type="text"
@@ -142,16 +141,17 @@ const IssueBadge = ({ title, content, id, t }) => {
                   name="description"
                   id="Description"
                   onChange={handleChange}
-                  additionalInfo="*Add all additional details you wish to provide here."
+                  additionalInfo="*Add all additional details you wish to provide here like how to claim the badge, how to contact you, or anything else you want to say about the badge."
                 />
                 <ValidationType type="description" />
               </Col>
-
               <S.ButtonContainer>
-                <Button name="submit" type="submit">
+                <Button name="submit" type="submit" id="submit-ad-button">
                   {t("Submit")}
                 </Button>
-                <p id="issue-submitad"></p>
+                <p>
+                  <b id="issue-submitad"></b>
+                </p>
               </S.ButtonContainer>
             </S.FormGroup>
           </Col>

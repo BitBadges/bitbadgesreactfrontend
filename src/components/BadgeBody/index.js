@@ -8,7 +8,6 @@ import * as S from "./styles";
 const Button = lazy(() => import("../../common/Button"));
 
 class LeftContentBlock extends React.Component {
-  
   render() {
     return (
       <S.LeftContentBlock>
@@ -22,12 +21,17 @@ class LeftContentBlock extends React.Component {
                 height="100%"
               />
             ) : (
-              <Box border={10} borderRadius="5%" color="black">
-                <Box
-                  border={100}
-                  color={this.props.badge.backgroundColor}
-                ></Box>
-              </Box>
+              <img
+                src={"https://bitbadges.s3.amazonaws.com/blankbadge.png"}
+                style={{
+                  backgroundColor: this.props.badge.backgroundColor
+                    ? this.props.badge.backgroundColor
+                    : "black",
+                }}
+                className="about-block-image"
+                width="100%"
+                height="100%"
+              />
             )}
           </Col>
           <Col lg={11} md={11} sm={11} xs={24}>

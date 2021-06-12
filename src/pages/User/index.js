@@ -12,6 +12,8 @@ const ContentBlock = lazy(() => import("../../components/ContentBlock"));
 const MiddleBlock = lazy(() => import("../../components/MiddleBlock"));
 
 const List = lazy(() => import("../../common/List"));
+const AdList = lazy(() => import("../../common/AdList"));
+
 const Container = lazy(() => import("../../common/Container"));
 const ScrollToTop = lazy(() => import("../../common/ScrollToTop"));
 
@@ -74,7 +76,6 @@ class User extends React.Component {
                 <List
                   title="All Issued Badges"
                   hashArray={this.state.badgesIssued}
-                  s
                 ></List>
               </Col>
               <Col lg={11} md={11} sm={12} xs={24}>

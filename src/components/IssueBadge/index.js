@@ -21,7 +21,8 @@ const Button = lazy(() => import("../../common/Button"));
 const TextArea = lazy(() => import("../../common/TextArea"));
 
 const IssueBadge = ({ title, content, id, t }) => {
-  const { values, errors, handleChange, handleSubmit } = useForm(validate);
+  const { values, errors, handleChange, handleSubmit, disabled } =
+    useForm(validate);
   const [checked, setChecked] = React.useState(false);
   const [submitting, setSubmitting] = React.useState(false);
 
@@ -63,27 +64,11 @@ const IssueBadge = ({ title, content, id, t }) => {
               padding={true}
               title={"Issue a badge!"}
               content={
-                "Issue a badge to another user! Add their name in the recipient box, give it a title, and add any other accompanying details you choose. Note that everything is permanently stored on the blockchain and interplanetary file system (IPFS). This means that the badge cannot ever be changed once submitted, so double check before submitting!"
+                "Issue a badge to another user! Add their name in the recipient box, give it a title, and add any other accompanying details you choose. You must own 0.05 BitBadges creator coins to be able to issue a badge, and each badge costs 0.005 BitClout per recipient. Note that everything is permanently stored on the blockchain and interplanetary file system (IPFS). This means that the badge cannot ever be changed once submitted, so double check before submitting!"
               }
             />
             <img src="https://bitbadges.s3.amazonaws.com/badge.png"></img>
           </Col>
-          {/** 
-           * badges: [
-    {
-      issuer: "", //required to not be empty
-      recipient: "", //required to not be empty
-      imageUrl: "",
-      title: "", //requied to not be empty
-      externalUrl: "",
-      backgroundColor: "", //required to not be empty
-      description:""
-      validDates: true,
-      validDateStart: 1, //integer representing seconds since UNIX epoch
-      validDateEnd: 5, //integer representing seconds since UNIX epoch
-    },
-  ],
-          */}
           <Col lg={12} md={12} sm={24}>
             <S.FormGroup autoComplete="off" onSubmit={handleSubmit}>
               <Col span={24}>
@@ -98,14 +83,14 @@ const IssueBadge = ({ title, content, id, t }) => {
                 <ValidationType type="title" />
               </Col>
               <Col span={24}>
-                <Input
+                <TextArea
                   type="text"
                   name="recipients"
-                  id="Recipient's BitClout Usernames"
+                  id="Recipient's BitClout Usernames or Public Keys"
                   placeholder=""
                   value={values.recipients || ""}
                   onChange={handleChange}
-                  additionalInfo="*Separate names using a comma. Use tool below to get public keys for your coin holders!"
+                  additionalInfo="*Separate inputs using a comma. You may use the tool below to get public keys for your coin holders! To alleviate server stress, the limit for number of usernames is set at 100. You may use an unlimited amount of public keys. Duplicate inputs will be removed."
                 />
                 <ValidationType type="recipients" />
               </Col>
@@ -117,7 +102,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   placeholder=""
                   value={values.imageUrl || ""}
                   onChange={handleChange}
-                  additionalInfo="*Note that once submitted, this badge can never unpoint to this URL. Consider using IPFS, another permanent file storage option, or a URL that you have control over. If blank, defaults to solid image of background color."
+                  additionalInfo="*Note that once submitted, this badge can never unpoint to this URL. Consider using IPFS, another permanent file storage option, an image URI, or a URL that you have control over. If blank, defaults to sample badge image of background color."
                 />
                 <ValidationType type="imageUrl" />
               </Col>
@@ -202,12 +187,20 @@ const IssueBadge = ({ title, content, id, t }) => {
                 <ValidationType type="validDates" />
               </Col>
               <S.ButtonContainer>
-                <Button name="submit" type="submit">
+                <Button name="submit" type="submit" id="submit-button">
                   {t("Submit")}
                 </Button>
-                <p id="issue-submit"></p>
+                <p>
+                  <b id="issue-submit"></b>
+                </p>
               </S.ButtonContainer>
-              <p align="right">Remember: submissions are permanent!</p>
+              <p align="right">
+                Note: submissions are permanent! Please double check!
+              </p>
+              <p align="right">
+                *Badge will be issued from whatever account you select after
+                clicking submit
+              </p>
             </S.FormGroup>
           </Col>
         </Row>
