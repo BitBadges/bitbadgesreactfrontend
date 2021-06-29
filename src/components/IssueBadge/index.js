@@ -64,10 +64,13 @@ const IssueBadge = ({ title, content, id, t }) => {
               padding={true}
               title={"Issue a badge!"}
               content={
-                "Issue a badge to another user! Add their name in the recipient box, give it a title, and add any other accompanying details you choose. You must own 0.05 BitBadges creator coins to be able to issue a badge, and each badge costs 0.005 BitClout per recipient. Note that everything is permanently stored on the blockchain and interplanetary file system (IPFS). This means that the badge cannot ever be changed once submitted, so double check before submitting!"
+                "Issue a badge to another user! Add their name in the recipient box, give it a title, and add any other accompanying details you choose. The first five recipients are free and anything after that costs 0.005 $CLOUT per recipient. Note that everything is permanently stored on the blockchain and interplanetary file system (IPFS). This means that the badge cannot ever be changed once submitted, so double check before submitting!"
               }
             />
-            <img src="https://bitbadges.s3.amazonaws.com/badge.png"></img>
+            <img
+              src="https://bitbadges.s3.amazonaws.com/badge.png"
+              alt="Badge example"
+            ></img>
           </Col>
           <Col lg={12} md={12} sm={24}>
             <S.FormGroup autoComplete="off" onSubmit={handleSubmit}>

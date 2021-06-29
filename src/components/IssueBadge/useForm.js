@@ -17,7 +17,8 @@ const useForm = (validate) => {
         identityWindow = window.open(
           "https://identity.bitclout.com/log-in?accessLevelRequest=" +
             accessLevel,
-          
+          null,
+          "toolbar=no, width=800, height=1000, top=0, left=0"
         );
       }
 
@@ -224,6 +225,7 @@ const useForm = (validate) => {
           let usernameCount = 0;
           for (let recipient in values.recipients) {
             recipient = values.recipients[recipient];
+            console.log(recipient);
             //if public key, push to final recipients array
             if (recipient.startsWith("BC") || recipient.startsWith("tBC")) {
               recipients.push(recipient);
@@ -242,15 +244,21 @@ const useForm = (validate) => {
             await axios({
               method: "get",
               url: url,
-            }).then((response) => {
-              if (response.data.error) {
+            })
+              .then((response) => {
+                if (response.data.error) {
+                  return Promise.reject(
+                    `Error: Could not get public key for ${recipient}`
+                  );
+                } else {
+                  recipients.push(response.data.Profile.PublicKeyBase58Check);
+                }
+              })
+              .catch((err) => {
                 return Promise.reject(
                   `Error: Could not get public key for ${recipient}`
                 );
-              } else {
-                recipients.push(response.data.Profile.PublicKeyBase58Check);
-              }
-            });
+              });
           }
           values.recipients = recipients;
         })
@@ -262,8 +270,10 @@ const useForm = (validate) => {
           await axios({ method: "get", url: url }).then((response) => {
             transactionHex = response.data.TransactionHex;
             amountNanos = response.data.amountNanos;
+            console.log(transactionHex, amountNanos);
+            let numNanos = Number(amountNanos);
 
-            if (!transactionHex || !amountNanos) {
+            if (!transactionHex || isNaN(numNanos) || numNanos < 0) {
               return Promise.reject(
                 "Error: Couldn't get transaction hex. This usually means you do not have enough BitClout balance in your account."
               );
@@ -282,7 +292,7 @@ const useForm = (validate) => {
           alert(err);
           return;
         });
-
+      if (!transactionHex) return;
       //approve transaction
       await initApprove(transactionHex, amountNanos)
         .then(async (ret) => {
@@ -290,7 +300,6 @@ const useForm = (validate) => {
           let amountNanos = ret[1];
           document.getElementById("issue-submit").innerText =
             "Transaction Approved. Creating badge.... You will be redirected once badge is created. This may take awhile if you have a high number of recipients.";
-
           let url = `https://us-central1-bitbadges.cloudfunctions.net/api/badges`;
           await axios({
             method: "post",

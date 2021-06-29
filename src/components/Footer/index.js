@@ -131,7 +131,11 @@ const Footer = ({ t }) => {
             >
               <S.NavLink to="/">
                 <S.LogoContainer>
-                  <img src={process.env.PUBLIC_URL + "/img/icons/logo.png"} />
+                  <img
+                    height="90px"
+                    src={process.env.PUBLIC_URL + "/img/icons/logo.png"}
+                    alt="BitBadges Logo"
+                  />
                 </S.LogoContainer>
               </S.NavLink>
               <S.FooterContainer>
