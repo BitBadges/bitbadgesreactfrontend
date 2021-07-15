@@ -1,24 +1,24 @@
-import React, { lazy } from "react";
-import { Row, Col } from "antd";
-import Zoom from "react-reveal/Zoom";
-import { withTranslation } from "react-i18next";
-import { Checkbox } from "@material-ui/core";
+import React, { lazy } from 'react';
+import { Row, Col } from 'antd';
+import Zoom from 'react-reveal/Zoom';
+import { withTranslation } from 'react-i18next';
+import { Checkbox } from '@material-ui/core';
 
-import DateFnsUtils from "@date-io/date-fns";
+import DateFnsUtils from '@date-io/date-fns';
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
-} from "@material-ui/pickers";
-import BitcloutLogin from "react-bitclout-login";
-import useForm from "./useForm";
-import validate from "./validationRules";
-import axios from "axios";
-import * as S from "./styles";
+} from '@material-ui/pickers';
+import BitcloutLogin from 'react-bitclout-login';
+import useForm from './useForm';
+import validate from './validationRules';
+import axios from 'axios';
+import * as S from './styles';
 
-const Block = lazy(() => import("../Block"));
-const Input = lazy(() => import("../../common/Input"));
-const Button = lazy(() => import("../../common/Button"));
-const TextArea = lazy(() => import("../../common/TextArea"));
+const Block = lazy(() => import('../Block'));
+const Input = lazy(() => import('../../common/Input'));
+const Button = lazy(() => import('../../common/Button'));
+const TextArea = lazy(() => import('../../common/TextArea'));
 
 const IssueBadge = ({ title, content, id, t }) => {
   const { values, errors, handleChange, handleSubmit } = useForm(validate);
@@ -56,9 +56,9 @@ const IssueBadge = ({ title, content, id, t }) => {
           <Col lg={12} md={11} sm={24}>
             <Block
               padding={true}
-              title={"Advertise your badge!"}
+              title={'Advertise your badge!'}
               content={
-                "Have an idea for a badge in mind? Get it out to the public by advertising it. Explain what the badge is and what needs to be done to obtain it. You can create a badge ad for any service you want to offer or any appreciation you want to give out. Some examples may include creating a badge for completion of the course you are teaching, a gym membership, or an employee of the month award!"
+                'Have an idea for a badge in mind? Get it out to the public by advertising it. Explain what the badge is and what needs to be done to obtain it. You can create a badge ad for any service you want to offer or any appreciation you want to give out. Some examples may include creating a badge for completion of the course you are teaching, a gym membership, or an employee of the month award!'
               }
             />
             <img src="https://bitbadges.s3.amazonaws.com/badge.png"></img>
@@ -71,7 +71,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   name="title"
                   id="Title"
                   placeholder=""
-                  value={values.title || ""}
+                  value={values.title || ''}
                   onChange={handleChange}
                 />
                 <ValidationType type="title" />
@@ -82,7 +82,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   name="Validity"
                   id="Validity"
                   placeholder=""
-                  value={values.validity || ""}
+                  value={values.validity || ''}
                   onChange={handleChange}
                   additionalInfo="*Explain how long the badge is valid for"
                 />
@@ -94,7 +94,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   name="preReqs"
                   id="Pre-Requisites"
                   placeholder=""
-                  value={values.preReqs || ""}
+                  value={values.preReqs || ''}
                   onChange={handleChange}
                   additionalInfo="*What needs to be done to obtain the badge"
                 />
@@ -106,7 +106,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   name="imageUrl"
                   id="Image URL"
                   placeholder=""
-                  value={values.imageUrl || ""}
+                  value={values.imageUrl || ''}
                   onChange={handleChange}
                 />
                 <ValidationType type="imageUrl" />
@@ -117,7 +117,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   name="externalUrl"
                   id="External URL"
                   placeholder=""
-                  value={values.externalUrl || ""}
+                  value={values.externalUrl || ''}
                   onChange={handleChange}
                 />
                 <ValidationType type="externalUrl" />
@@ -128,7 +128,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   name="backgroundColor"
                   id="Background Color"
                   placeholder=""
-                  value={values.backgroundColor || ""}
+                  value={values.backgroundColor || ''}
                   onChange={handleChange}
                   additionalInfo="*Background colors must be a hex value in format '#FFFFFF' or a valid HTML color name. Visit www.w3schools.com/colors/colors_names.asp for more info. Defaults to black."
                 />
@@ -137,7 +137,7 @@ const IssueBadge = ({ title, content, id, t }) => {
               <Col span={24}>
                 <TextArea
                   placeholder=""
-                  value={values.description || ""}
+                  value={values.description || ''}
                   name="description"
                   id="Description"
                   onChange={handleChange}
@@ -147,10 +147,12 @@ const IssueBadge = ({ title, content, id, t }) => {
               </Col>
               <S.ButtonContainer>
                 <Button name="submit" type="submit" id="submit-ad-button">
-                  {t("Submit")}
+                  {t('Submit')}
                 </Button>
                 <p>
-                  <b id="issue-submitad"></b>
+                  <b id="issue-submitad">
+                    
+                  </b>
                 </p>
               </S.ButtonContainer>
             </S.FormGroup>

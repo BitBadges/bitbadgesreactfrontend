@@ -57,6 +57,8 @@ class User extends React.Component {
               <CircularProgress size={100} />
             </p>
           )}
+
+          <p align="center">Coming Soon!</p>
         </Box>
       </Container>
     );

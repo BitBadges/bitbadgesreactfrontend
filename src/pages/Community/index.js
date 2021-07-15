@@ -21,7 +21,7 @@ const Explore = () => {
         type="right"
         first="true"
         title={"Discord"}
-        content={"Join the BitBadges discord at discord.gg/Hc9eU73S"}
+        content={"Join the BitBadges discord at discord.gg/TJMaEd9bar"}
         icon="https://logos-world.net/wp-content/uploads/2020/11/Discord-Emblem.png"
         id="intro"
       />

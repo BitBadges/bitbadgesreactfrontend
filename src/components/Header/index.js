@@ -1,12 +1,12 @@
-import { useState, Fragment, lazy } from "react";
-import { Row, Col, Drawer } from "antd";
-import { CSSTransition } from "react-transition-group";
-import { withTranslation } from "react-i18next";
+import { useState, Fragment, lazy } from 'react';
+import { Row, Col, Drawer } from 'antd';
+import { CSSTransition } from 'react-transition-group';
+import { withTranslation } from 'react-i18next';
 
-import * as S from "./styles";
+import * as S from './styles';
 
-const SvgIcon = lazy(() => import("../../common/SvgIcon"));
-const Button = lazy(() => import("../../common/Button"));
+const SvgIcon = lazy(() => import('../../common/SvgIcon'));
+const Button = lazy(() => import('../../common/Button'));
 
 const Header = ({ t }) => {
   const [isNavVisible] = useState(false);
@@ -24,38 +24,38 @@ const Header = ({ t }) => {
   const MenuItem = () => {
     return (
       <Fragment>
-        <S.CustomNavLinkSmall onClick={() => (window.location.href = "/")}>
-          <S.Span>{t("Home")}</S.Span>
+        <S.CustomNavLinkSmall onClick={() => (window.location.href = '/')}>
+          <S.Span>{t('Home')}</S.Span>
         </S.CustomNavLinkSmall>
-        <S.CustomNavLinkSmall onClick={() => (window.location.href = "/about")}>
-          <S.Span>{t("About")}</S.Span>
+        <S.CustomNavLinkSmall onClick={() => (window.location.href = '/about')}>
+          <S.Span>{t('About')}</S.Span>
         </S.CustomNavLinkSmall>
         <S.CustomNavLinkSmall
-          onClick={() => (window.location.href = "/explore")}
+          onClick={() => (window.location.href = '/explore')}
         >
-          <S.Span>{t("Explore")}</S.Span>
+          <S.Span>{t('Explore')}</S.Span>
         </S.CustomNavLinkSmall>
         <S.CustomNavLinkSmall onClick={() => (window.location.href = `/view`)}>
-          <S.Span>{t("View Profiles")}</S.Span>
+          <S.Span>{t('View Profiles')}</S.Span>
         </S.CustomNavLinkSmall>
-        <S.CustomNavLinkSmall
+        {/* <S.CustomNavLinkSmall
           onClick={() => (window.location.href = "/issuead")}
         >
           <S.Span>{t("Create Ad")}</S.Span>
+        </S.CustomNavLinkSmall> */}
+        <S.CustomNavLinkSmall onClick={() => (window.location.href = '/issue')}>
+          <S.Span>{t('Issue Badge')}</S.Span>
         </S.CustomNavLinkSmall>
-        <S.CustomNavLinkSmall onClick={() => (window.location.href = "/issue")}>
-          <S.Span>{t("Issue Badge")}</S.Span>
-        </S.CustomNavLinkSmall>
-        <S.CustomNavLinkSmall style={{ width: "180px" }}>
+        <S.CustomNavLinkSmall style={{ width: '180px' }}>
           <S.Span>
             <Button
               onClick={() =>
                 (window.location.href = `/user/${window.localStorage.getItem(
-                  "username"
+                  'username'
                 )}`)
               }
             >
-              {t("My Profile")}
+              {t('My Profile')}
             </Button>
           </S.Span>
         </S.CustomNavLinkSmall>
@@ -70,7 +70,7 @@ const Header = ({ t }) => {
           <S.LogoContainer to="/" aria-label="homepage">
             <img
               height="90px"
-              src={process.env.PUBLIC_URL + "/img/icons/logo.png"}
+              src={process.env.PUBLIC_URL + '/img/icons/logo.png'}
             />
           </S.LogoContainer>
 
@@ -89,7 +89,7 @@ const Header = ({ t }) => {
           unmountOnExit
         >
           <Drawer closable={false} visible={visible} onClose={onClose}>
-            <Col style={{ marginBottom: "2.5rem" }}>
+            <Col style={{ marginBottom: '2.5rem' }}>
               <S.Label onClick={onClose}>
                 <Col span={12}>
                   <S.Menu>Menu</S.Menu>

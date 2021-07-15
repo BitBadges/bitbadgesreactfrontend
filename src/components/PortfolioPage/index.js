@@ -1,13 +1,13 @@
-import { lazy } from "react";
-import { Row, Col } from "antd";
-import { withTranslation } from "react-i18next";
-import Fade from "react-reveal/Fade";
-import { Paper, Grid, Card, Box } from "@material-ui/core";
+import { lazy } from 'react';
+import { Row, Col } from 'antd';
+import { withTranslation } from 'react-i18next';
+import Fade from 'react-reveal/Fade';
+import { Paper, Grid, Card, Box } from '@material-ui/core';
 
-import * as S from "./styles";
+import * as S from './styles';
 
-const Button = lazy(() => import("../../common/Button"));
-const PortfolioCard = lazy(() => import("../../components/PortfolioCard"));
+const Button = lazy(() => import('../../common/Button'));
+const PortfolioCard = lazy(() => import('../../components/PortfolioCard'));
 
 const PortfolioPage = ({
   title,
@@ -20,18 +20,18 @@ const PortfolioPage = ({
   const scrollTo = (id) => {
     const element = document.getElementById(id);
     element.scrollIntoView({
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
   const getEditProfile = () => {
     let jsx =
-      window.localStorage.getItem("username") === getUserId() ? (
+      window.localStorage.getItem('username') === getUserId() ? (
         <Button
           name="submit"
           type="submit"
           onClick={() =>
-            (window.location.href = window.location.href + "/edit")
+            (window.location.href = window.location.href + '/edit')
           }
         >
           Edit Profile
@@ -43,7 +43,7 @@ const PortfolioPage = ({
   };
 
   const getBitcloutProfile = () => {
-    let jsx = window.localStorage.getItem("username") ? (
+    let jsx = window.localStorage.getItem('username') ? (
       <Button
         name="submit"
         type="submit"
@@ -60,7 +60,7 @@ const PortfolioPage = ({
   };
 
   const getUserId = () => {
-    return window.location.pathname.split("/")[2];
+    return window.location.pathname.split('/')[2];
   };
   return (
     <>
@@ -85,7 +85,7 @@ const PortfolioPage = ({
             spacing={3}
             wrap="wrap"
           >
-            <div>{getEditProfile()}</div>
+            {/* <div>{getEditProfile()}</div> */}
             <div>{getBitcloutProfile()}</div>
           </Grid>
         </>

@@ -1,24 +1,24 @@
-import React, { lazy } from "react";
-import { Row, Col } from "antd";
-import Zoom from "react-reveal/Zoom";
-import { withTranslation } from "react-i18next";
-import { Checkbox, CircularProgress } from "@material-ui/core";
+import React, { lazy } from 'react';
+import { Row, Col } from 'antd';
+import Zoom from 'react-reveal/Zoom';
+import { withTranslation } from 'react-i18next';
+import { Checkbox, CircularProgress } from '@material-ui/core';
 
-import DateFnsUtils from "@date-io/date-fns";
+import DateFnsUtils from '@date-io/date-fns';
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
-} from "@material-ui/pickers";
-import BitcloutLogin from "react-bitclout-login";
-import useForm from "./useForm";
-import validate from "./validationRules";
-import axios from "axios";
-import * as S from "./styles";
+} from '@material-ui/pickers';
+import BitcloutLogin from 'react-bitclout-login';
+import useForm from './useForm';
+import validate from './validationRules';
+import axios from 'axios';
+import * as S from './styles';
 
-const Block = lazy(() => import("../Block"));
-const Input = lazy(() => import("../../common/Input"));
-const Button = lazy(() => import("../../common/Button"));
-const TextArea = lazy(() => import("../../common/TextArea"));
+const Block = lazy(() => import('../Block'));
+const Input = lazy(() => import('../../common/Input'));
+const Button = lazy(() => import('../../common/Button'));
+const TextArea = lazy(() => import('../../common/TextArea'));
 
 const IssueBadge = ({ title, content, id, t }) => {
   const { values, errors, handleChange, handleSubmit, disabled } =
@@ -62,9 +62,9 @@ const IssueBadge = ({ title, content, id, t }) => {
           <Col lg={12} md={11} sm={24}>
             <Block
               padding={true}
-              title={"Issue a badge!"}
+              title={'Issue a badge!'}
               content={
-                "Issue a badge to another user! Add their name in the recipient box, give it a title, and add any other accompanying details you choose. The first five recipients are free and anything after that costs 0.005 $CLOUT per recipient. Note that everything is permanently stored on the blockchain and interplanetary file system (IPFS). This means that the badge cannot ever be changed once submitted, so double check before submitting!"
+                'Issue a badge to another user! Add their name in the recipient box, give it a title, and add any other accompanying details you choose. The first 25 recipients are free and anything after that costs 0.005 $CLOUT per recipient. Note that everything is permanently stored on the blockchain and interplanetary file system (IPFS). This means that the badge cannot ever be changed once submitted, so double check before submitting!'
               }
             />
             <img
@@ -80,7 +80,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   name="title"
                   id="Title"
                   placeholder=""
-                  value={values.title || ""}
+                  value={values.title || ''}
                   onChange={handleChange}
                 />
                 <ValidationType type="title" />
@@ -91,7 +91,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   name="recipients"
                   id="Recipient's BitClout Usernames or Public Keys"
                   placeholder=""
-                  value={values.recipients || ""}
+                  value={values.recipients || ''}
                   onChange={handleChange}
                   additionalInfo="*Separate inputs using a comma. You may use the tool below to get public keys for your coin holders! To alleviate server stress, the limit for number of usernames is set at 100. You may use an unlimited amount of public keys. Duplicate inputs will be removed."
                 />
@@ -103,7 +103,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   name="imageUrl"
                   id="Image URL"
                   placeholder=""
-                  value={values.imageUrl || ""}
+                  value={values.imageUrl || ''}
                   onChange={handleChange}
                   additionalInfo="*Note that once submitted, this badge can never unpoint to this URL. Consider using IPFS, another permanent file storage option, an image URI, or a URL that you have control over. If blank, defaults to sample badge image of background color."
                 />
@@ -115,7 +115,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   name="externalUrl"
                   id="External URL"
                   placeholder=""
-                  value={values.externalUrl || ""}
+                  value={values.externalUrl || ''}
                   onChange={handleChange}
                   additionalInfo="*Note that once submitted, this badge can never unpoint to this URL. Consider using IPFS, another permanent file storage option , or a URL that you have control over."
                 />
@@ -127,7 +127,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   name="backgroundColor"
                   id="Background Color"
                   placeholder=""
-                  value={values.backgroundColor || ""}
+                  value={values.backgroundColor || ''}
                   onChange={handleChange}
                   additionalInfo="*Background colors must be a hex value in format '#FFFFFF' or a valid HTML color name. Visit www.w3schools.com/colors/colors_names.asp for more info. Defaults to black."
                 />
@@ -137,7 +137,7 @@ const IssueBadge = ({ title, content, id, t }) => {
               <Col span={24}>
                 <TextArea
                   placeholder=""
-                  value={values.description || ""}
+                  value={values.description || ''}
                   name="description"
                   id="Description"
                   onChange={handleChange}
@@ -151,7 +151,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                   id="validDatesCheckbox"
                   checked={checked}
                   onChange={handleCheckbox}
-                  inputProps={{ "aria-label": "primary checkbox" }}
+                  inputProps={{ 'aria-label': 'primary checkbox' }}
                 />
               </Col>
               <Col span={24}>
@@ -166,7 +166,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                         value={selectedStartDate}
                         onChange={handleStartDateChange}
                         KeyboardButtonProps={{
-                          "aria-label": "change date",
+                          'aria-label': 'change date',
                         }}
                       />
                     </MuiPickersUtilsProvider>
@@ -179,7 +179,7 @@ const IssueBadge = ({ title, content, id, t }) => {
                         value={selectedEndDate}
                         onChange={handleEndDateChange}
                         KeyboardButtonProps={{
-                          "aria-label": "change date",
+                          'aria-label': 'change date',
                         }}
                       />
                     </MuiPickersUtilsProvider>
@@ -191,7 +191,7 @@ const IssueBadge = ({ title, content, id, t }) => {
               </Col>
               <S.ButtonContainer>
                 <Button name="submit" type="submit" id="submit-button">
-                  {t("Submit")}
+                  {t('Submit')}
                 </Button>
                 <p>
                   <b id="issue-submit"></b>
