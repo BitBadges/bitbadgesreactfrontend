@@ -6,4 +6,4 @@
 
 # BitBadges Frontend
 
-Link to documentation: https://mentors4edu.gitbook.io/bitbadges
+Link to documentation: https://bitbadges.github.io/
